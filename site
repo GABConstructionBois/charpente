@@ -1,0 +1,211 @@
+index.html
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Charpente & Bois Éco — Ton Entreprise</title>
+  <meta name="description" content="Charpente et construction bois écologique — savoir-faire artisanal, matériaux locaux, constructions durables." />
+  <style>
+    :root{
+      --bg:#fff;
+      --wood:#A66F3A; /* bois */
+      --wood-2:#8B5A2B;
+      --green:#3B8B6A;
+      --muted:#6b6b6b;
+      --radius:12px;
+      --container:1100px;
+      --max-width:1100px;
+      --accent:#EDE3D8;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:#222;line-height:1.5}
+    a{color:var(--wood);text-decoration:none}
+
+    header{background:linear-gradient(180deg, rgba(59,139,106,0.04), rgba(166,111,58,0.03));border-bottom:1px solid rgba(0,0,0,0.04)}
+    .nav{max-width:var(--container);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:18px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--wood),var(--wood-2));display:grid;place-items:center;color:#fff;font-weight:700}
+    .site-title{font-weight:700}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{font-weight:600;color:var(--muted)}
+
+    /* HERO */
+    .hero{max-width:var(--container);margin:30px auto;padding:40px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .hero-left h1{font-size:clamp(26px,4vw,40px);margin:0 0 14px}
+    .strap{color:var(--green);font-weight:700;margin-bottom:8px}
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:12px 18px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
+    .btn-primary{background:var(--wood);color:white}
+    .btn-outline{background:transparent;border:2px solid var(--wood);color:var(--wood)}
+
+    .card{background:var(--accent);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    .contact-list{display:flex;flex-direction:column;gap:8px}
+
+    /* SECTIONS */
+    section{max-width:var(--container);margin:28px auto;padding:24px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .service{background:#fff;border-radius:10px;padding:16px;border:1px solid rgba(0,0,0,0.04)}
+    .service h3{margin:0 0 8px}
+    .muted{color:var(--muted)}
+
+    /* GALLERY */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .gallery img{width:100%;height:200px;object-fit:cover;border-radius:8px}
+
+    /* CONTACT FORM */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea{padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)}
+    textarea{min-height:120px}
+
+    footer{background:#fafafa;border-top:1px solid rgba(0,0,0,0.04);padding:18px}
+    .footer-inner{max-width:var(--container);margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;padding:20px}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+
+    /* small helpers */
+    .small{font-size:0.9rem}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(59,139,106,0.12);color:var(--green);font-weight:700}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo">CB</div>
+        <div>
+          <div class="site-title">Charpente & Bois Éco</div>
+          <div class="small muted">Artisan charpentier — construction bois écologique</div>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#realisations">Réalisations</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="hero-left">
+        <div class="strap">Construction bois • Charpente • Éco-responsable</div>
+        <h1>Des structures bois durables, pensées pour durer.</h1>
+        <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed justo sit amet tortor luctus posuere. Ut sit amet sem eu arcu fermentum ultrices.</p>
+        <div class="cta">
+          <button class="btn btn-primary" onclick="location.href='#contact'">Demander un devis</button>
+          <a class="btn btn-outline" href="#realisations">Voir nos réalisations</a>
+        </div>
+      </div>
+
+      <aside class="card">
+        <div class="small pill">Intervention : région Provence-Alpes-Côte d'Azur (exemple)</div>
+        <h3 style="margin-top:12px;margin-bottom:6px">Contact rapide</h3>
+        <div class="contact-list">
+          <div><strong>Téléphone :</strong> 06 12 34 56 78</div>
+          <div><strong>Email :</strong> contact@charpente-bois-exemple.fr</div>
+          <div class="small muted">Disponibilité : du lundi au vendredi</div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="services">
+      <h2>Nos services</h2>
+      <p class="muted">Lorem ipsum dolor sit amet — artisan charpentier, construction et rénovation en ossature bois.</p>
+      <div class="grid-3" style="margin-top:14px">
+        <div class="service">
+          <h3>Charpente traditionnelle</h3>
+          <p class="muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae.</p>
+        </div>
+        <div class="service">
+          <h3>Ossature bois & extensions</h3>
+          <p class="muted">Suspendisse potenti. Nullam at pretium ligula. Integer vehicula.</p>
+        </div>
+        <div class="service">
+          <h3>Rénovation & isolation écologique</h3>
+          <p class="muted">Praesent convallis, arcu vel fermentum sodales, nibh velit efficitur lorem.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="realisations">
+      <h2>Réalisations</h2>
+      <p class="muted">Galerie de chantiers — exemples d'assemblages et finitions.</p>
+      <div class="gallery" style="margin-top:12px">
+        <img src="https://images.unsplash.com/photo-1547149605-56b3b0f5f8d6?auto=format&fit=crop&w=800&q=60" alt="chantier 1">
+        <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=800&q=60" alt="chantier 2">
+        <img src="https://images.unsplash.com/photo-1521790945508-bf2a36314e85?auto=format&fit=crop&w=800&q=60" alt="chantier 3">
+        <img src="https://images.unsplash.com/photo-1559628233-0a1b2c9f9b4f?auto=format&fit=crop&w=800&q=60" alt="chantier 4">
+        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=60" alt="chantier 5">
+        <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=800&q=60" alt="chantier 6">
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact & Devis</h2>
+      <p class="muted">Remplis le formulaire ci‑dessous ou contacte‑nous directement.</p>
+      <div class="contact-grid" style="margin-top:12px">
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <input type="text" id="name" placeholder="Nom et prénom" required>
+          <input type="tel" id="phone" placeholder="Téléphone" required>
+          <input type="email" id="email" placeholder="Email" required>
+          <input type="text" id="subject" placeholder="Objet (ex: Devis charpente)" required>
+          <textarea id="message" placeholder="Décris le projet (surface, localisation, contraintes...)" required></textarea>
+          <div style="display:flex;gap:10px;align-items:center">
+            <button class="btn btn-primary" type="submit">Envoyer la demande</button>
+            <div class="small muted">OU utilise : <a href="mailto:contact@charpente-bois-exemple.fr">contact@charpente-bois-exemple.fr</a></div>
+          </div>
+          <div id="formMsg" class="small muted" style="margin-top:8px"></div>
+        </form>
+
+        <aside class="card">
+          <h3>Infos pratiques</h3>
+          <p class="muted">Zone d'intervention : Provence-Alpes-Côte d'Azur (exemple). Déplacements étudiés selon chantier.</p>
+          <p class="muted">Assurance décennale, matériaux locaux, solutions écologiques.</p>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="small muted">© 2025 Charpente & Bois Éco — Tous droits réservés</div>
+      <div class="small">Conception : modèle rapide • <a href="#contact">Contact</a></div>
+    </div>
+  </footer>
+
+  <script>
+    function handleSubmit(e){
+      e.preventDefault();
+      const name=document.getElementById('name').value.trim();
+      const email=document.getElementById('email').value.trim();
+      const phone=document.getElementById('phone').value.trim();
+      const subject=document.getElementById('subject').value.trim();
+      const message=document.getElementById('message').value.trim();
+
+      // Simple mailto fallback so the form works without backend
+      const body = encodeURIComponent(
+        `Nom: ${name}\nTéléphone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`
+      );
+      const mailto = `mailto:contact@charpente-bois-exemple.fr?subject=${encodeURIComponent(subject)}&body=${body}`;
+      // Try to open mail client
+      window.location.href = mailto;
+      document.getElementById('formMsg').textContent = 'Votre client mail devrait s'ouvrir pour envoyer le message. Si rien ne se passe, utilisez l'adresse mail indiquée.';
+    }
+  </script>
+</body>
+</html>
