@@ -85,7 +85,15 @@ nav a:hover {
 
     /* HERO */
     .hero{max-width:var(--container);margin:30px auto;padding:40px;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
-    .hero-left h1{font-size:clamp(26px,4vw,40px);margin:0 0 14px}
+    .hero-left h1 {
+  font-size: clamp(26px, 4vw, 40px);
+  margin: 0 0 14px;
+  background: linear-gradient(to right, #1b3931, #245046); /* dégradé du header */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* fallback */
+}
     .strap{color:var(--green);font-weight:700;margin-bottom:8px}
     .cta{display:flex;gap:12px;margin-top:18px}
     .btn{padding:12px 18px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
