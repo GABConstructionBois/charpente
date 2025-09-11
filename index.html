@@ -25,20 +25,26 @@
 header {
   background: linear-gradient(to right, #1b3931, #245046); /* dégradé horizontal vert foncé */
   border-bottom: 1px solid rgba(0,0,0,0.04);
-  text-align: center; /* centrage global */
-  padding: 20px 0;
+  padding: 12px 24px;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between; /* gauche/droite */
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .brand {
   display: flex;
-  flex-direction: column; /* logo + titres empilés */
-  align-items: center;
-  gap: 8px;
+  align-items: center; /* logo + titre alignés verticalement */
+  gap: 12px;
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 10px;
   object-fit: cover;
   display: block;
@@ -48,27 +54,17 @@ header {
   font-weight: 700;
   color: #A66F3A; /* couleur bois */
   margin: 0;
-  transition: all 0.4s ease;
-}
-
-.site-title:hover {
-  background: linear-gradient(90deg, #A66F3A, #1b3931);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .small.muted {
+  display: block;
+  font-size: 0.9rem;
   color: #A66F3A; /* sous-titre */
-}
-
-nav {
-  margin-top: 12px;
 }
 
 nav ul {
   display: flex;
-  justify-content: center;
-  gap: 18px;
+  gap: 24px;
   list-style: none;
   margin: 0;
   padding: 0;
