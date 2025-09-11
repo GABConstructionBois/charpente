@@ -25,21 +25,21 @@
 header {
   background: linear-gradient(to right, #1b3931, #245046); /* dégradé horizontal vert foncé */
   border-bottom: 1px solid rgba(0,0,0,0.04);
-  padding: 12px 24px;
 }
 
-.header-container {
-  display: flex;
-  justify-content: space-between; /* gauche/droite */
-  align-items: center;
+.nav {
   max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* gauche/droite */
+  padding: 18px 24px;
 }
 
 .brand {
   display: flex;
-  align-items: center; /* logo + titre alignés verticalement */
   gap: 12px;
+  align-items: center;
 }
 
 .logo {
@@ -59,11 +59,7 @@ header {
 .small.muted {
   display: block;
   font-size: 0.9rem;
-  color: #A66F3A; /* sous-titre */
-}
-    
-nav {
-  margin-left: auto; /* pousse le menu complètement à droite */
+  color: #A66F3A; /* sous-titre bois */
 }
 
 nav ul {
@@ -82,8 +78,9 @@ nav a {
 }
 
 nav a:hover {
-  color: #A66F3A;
+  color: #A66F3A; /* bois au survol */
 }
+
 
 
     /* HERO */
