@@ -93,24 +93,28 @@ nav a:hover {
   max-width: var(--container);
   margin: 30px auto;
   padding: 40px;
-  display: grid;
-  grid-template-columns: 1fr 420px; /* texte à gauche, carte à droite */
-  gap: 28px;
-  align-items: start;
 }
 
 /* Titre responsive sur une ligne */
 .hero-title {
   font-size: clamp(36px, 5vw, 60px);
-  white-space: nowrap;          /* reste sur une seule ligne */
+  white-space: nowrap;          
   overflow: hidden;
   text-overflow: ellipsis;
-  margin: 0 0 20px;
+  margin: 0 0 30px;             /* espace sous le titre */
   background: linear-gradient(to right, #1b3931, #245046);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
+}
+
+/* Grille texte + carte */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 28px;
+  align-items: start;  /* aligne le haut de la carte avec le haut du texte */
 }
 
 /* Accroche */
@@ -127,7 +131,6 @@ nav a:hover {
   line-height: 1.6;
   font-size: 1rem;
   color: #222;
-  margin-bottom: 0;
 }
 
 .muted p {
@@ -138,9 +141,9 @@ nav a:hover {
 .cta {
   display: flex;
   justify-content: center;
-  gap: 24px;          /* espace entre les boutons */
-  margin-top: 40px;   /* espace au-dessus des boutons */
-  margin-bottom: 40px; /* espace sous les boutons */
+  gap: 24px;          
+  margin-top: 40px;   
+  margin-bottom: 40px;
 }
 
 /* Boutons styles */
@@ -246,35 +249,37 @@ aside.card {
     <div class="hero-left">
       <div class="strap">Construction bois • Charpente • Éco-responsable</div>
 
-      <!-- h1 plus grand via CSS -->
-      <h1 class="hero-title">Bâtir l’avenir, naturellement.</h1>
+  <h1 class="hero-title">Bâtir l’avenir, naturellement.</h1>
 
-    <div class="muted">
-      <p>Chez GAB Construction Bois, chaque projet est une démarche de respect de notre planète et un engagement pour les générations à venir.</p>
+  <div class="hero-grid">
 
-      <p>Je réalise chaque ouvrage de charpente et de construction bois avec rigueur et passion, en intégrant les dernières normes de construction, avec une promesse écologique forte, tout en préservant les traditions artisanales transmises par les Compagnons du Devoir.</p>
+      <div class="muted">
+        <p>Chez GAB Construction Bois, chaque projet est une démarche de respect de notre planète et un engagement pour les générations à venir.</p>
 
-      <p>Choisir GAB Construction Bois, c’est concevoir un ouvrage à votre image, valoriser et améliorer votre cadre de vie, mais aussi créer un habitat confortable et sain sur le long terme.</p>
+        <p>Je réalise chaque ouvrage de charpente et de construction bois avec rigueur et passion, en intégrant les dernières normes de construction, avec une promesse écologique forte, tout en préservant les traditions artisanales transmises par les Compagnons du Devoir.</p>
 
-      <p>Mon expérience passée dans le soin, mes voyages et mon rapport à la nature m’ont appris qu’un lieu en équilibre contribue à l’équilibre de ceux qui l’habitent. C’est avec cette sensibilité que je conçois des espaces en bois, pensés pour être durables, fonctionnels, chaleureux et favoriser le bien-être de ceux qui y vivent.</p>
+        <p>Choisir GAB Construction Bois, c’est concevoir un ouvrage à votre image, valoriser et améliorer votre cadre de vie, mais aussi créer un habitat confortable et sain sur le long terme.</p>
+
+        <p>Mon expérience passée dans le soin, mes voyages et mon rapport à la nature m’ont appris qu’un lieu en équilibre contribue à l’équilibre de ceux qui l’habitent. C’est avec cette sensibilité que je conçois des espaces en bois, pensés pour être durables, fonctionnels, chaleureux et favoriser le bien-être de ceux qui y vivent.</p>
+      </div>
+
+      <div class="cta">
+        <button class="btn btn-primary" onclick="location.href='#contact'">Demander un devis</button>
+        <a class="btn btn-outline" href="#realisations">Voir nos réalisations</a>
+      </div>
     </div>
 
-    <div class="cta">
-      <button class="btn btn-primary" onclick="location.href='#contact'">Demander un devis</button>
-      <a class="btn btn-outline" href="#realisations">Voir nos réalisations</a>
-    </div>
+    <aside class="card">
+      <div class="small pill">Intervention : EST Alpes-Maritimes - Monaco & Italian Border</div>
+      <h3 style="margin-top:12px;margin-bottom:6px">Contact rapide</h3>
+      <div class="contact-list">
+        <div><strong>Téléphone :</strong> 06 64 75 53 73</div>
+        <div><strong>Email :</strong> g.ferrandiz06@compagnons-du-devoir.fr</div>
+        <div class="small muted">Disponibilité : du mardi au samedi</div>
+      </div>
+    </aside>
+
   </div>
-
-  <aside class="card">
-    <div class="small pill">Intervention : EST Alpes-Maritimes - Monaco & Italian Border</div>
-    <h3 style="margin-top:12px;margin-bottom:6px">Contact rapide</h3>
-    <div class="contact-list">
-      <div><strong>Téléphone :</strong> 06 64 75 53 73</div>
-      <div><strong>Email :</strong> g.ferrandiz06@compagnons-du-devoir.fr</div>
-      <div class="small muted">Disponibilité : du mardi au samedi</div>
-    </div>
-  </aside>
-
 </section>
 </main>
 
