@@ -100,9 +100,12 @@ nav a:hover {
 }
 
 .hero-left h1 {
-  font-size: clamp(39px, 6vw, 60px); /* 1.5x plus grand qu’avant */
+  font-size: clamp(36px, 5vw, 60px); /* s’adapte à la largeur de l’écran */
+  white-space: nowrap;               /* pas de retour à la ligne */
+  overflow: hidden;                  /* coupe si ça déborde */
+  text-overflow: ellipsis;           /* ajoute "..." si vraiment trop long */
   margin: 0 0 14px;
-  background: linear-gradient(to right, #1b3931, #245046); /* dégradé du header */
+  background: linear-gradient(to right, #1b3931, #245046); /* dégradé texte */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -116,10 +119,10 @@ nav a:hover {
 }
 
 .cta {
-  display: flex;
-  flex-direction: column; /* empile les boutons */
-  gap: 48px; /* ≈ 3 sauts de ligne */
-  margin-top: 18px;
+  display: flex;             /* garde les boutons sur une ligne */
+  justify-content: center;   /* centre les boutons sous le texte */
+  gap: 24px;                 /* espace entre les deux boutons */
+  margin-top: 30px;          /* espace entre texte et boutons */
 }
 
 .btn {
@@ -236,10 +239,10 @@ nav a:hover {
         C’est avec cette sensibilité que je conçois des espaces en bois, pensés pour être durables, fonctionnels, chaleureux et favoriser le bien-être de ceux qui y vivent.</p>
       </div>
 
-      <div class="cta">
-        <button class="btn btn-primary" onclick="location.href='#contact'">Demander un devis</button>
-        <a class="btn btn-outline" href="#realisations">Voir nos réalisations</a>
-      </div>
+    <div class="cta">
+  <button class="btn btn-primary" onclick="location.href='#contact'">Demander un devis</button>
+  <a class="btn btn-outline" href="#realisations">Voir nos réalisations</a>
+</div>
     </div>
 
     <aside class="card">
