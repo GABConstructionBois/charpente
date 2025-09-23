@@ -180,54 +180,67 @@ aside.card {
     /* SECTIONS */
     section{max-width:var(--container);margin:28px auto;padding:24px}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-     /* --- SECTION SERVICES --- */
+  
+    /* --- SECTION SERVICES --- */
+/* GRID 2x2 */
 .grid-4 {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 colonnes fixes */
-  gap: 24px;
-  max-width: 900px;
-  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
+
+/* Service box */
 .service {
-  aspect-ratio: 1 / 1; /* carré */
   background: #fff;
-  border-radius: 16px;
+  border-radius: 12px;
   padding: 20px;
   border: 1px solid rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.2s ease;
+  overflow: visible; /* ✅ permet à la bulle de dépasser */
+  position: relative;
 }
+
+/* Effet léger sur la carte */
 .service:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  transform: translateY(-4px);
 }
-.service h3 {
-  margin: 0 0 8px;
+
+/* Conteneur bulle */
+.bubble {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+  position: relative;
 }
-.service p {
-  margin: 0 0 12px;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-/* bulle photo ronde */
-.service-photo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-top: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.service-photo img {
-  width: 100%;
-  height: 100%;
+
+/* Bulle image */
+.bubble img {
+  width: 90px;
+  height: 90px;
   object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
 }
+
+/* Zoom au survol */
+.bubble img:hover {
+  transform: scale(1.6); /* grossit vraiment */
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
+
+/* Texte */
+.service h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.service p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
 /* Responsive */
 @media (max-width: 1100px) {
   .grid-4 { grid-template-columns: repeat(2,1fr); }
