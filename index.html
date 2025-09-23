@@ -54,6 +54,7 @@ header {
   object-fit: cover;
   display: block; 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* ✅ curseur main pour montrer que c’est cliquable */
 }  /* Zoom au survol */
 .logo:hover {
   transform: scale(1.15); /* grossit légèrement */
@@ -297,7 +298,9 @@ aside.card {
   <header>
     <div class="nav">
       <div class="brand">
+        <a href="#contact">
        <img src="images/LOGO GAB NEW.webp" alt="Logo GAB Construction Bois" class="logo" />
+          </a>
         <div>
           <div class="site-title"> GAB Construction Bois - Charpente & Co.</div>
           <div class="small muted"> Artisan Charpentier traditionnel — Constructeur bois écologique</div>
