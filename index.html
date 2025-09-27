@@ -204,6 +204,19 @@ aside.card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
+    /* En-tête centré */
+.card-header {
+  text-align: center;
+  font-weight: 600;
+  color: var(--wood);
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 10px;
+  background: #fafafa;
+  font-size: 1rem;
+  line-height: 1.4;
+}
 /* Liste contacts */
 .contact-list {
   display: flex;
@@ -377,11 +390,12 @@ aside.card:hover {
       </div>
     </div>
 
-    <aside class="card">
-      <div class="small pill">Intervention : EST Alpes-Maritimes 
-        <p>Monaco & Italian Border</p> </div>
-      <h3 style="margin-top:12px;margin-bottom:6px">Contact rapide</h3>
-      <div class="contact-list">
+   <aside class="card">
+  <div class="card-header">
+    Intervention : EST Alpes-Maritimes <br>
+    Monaco & Italian Border
+  </div>
+  <div class="contact-list">
         <div><strong>Téléphone :</strong> 06 64 75 53 73</div>
         <div><strong>Email :</strong> g.ferrandiz06@compagnons-du-devoir.fr</div>
         <div class="small muted">Disponibilité : du mardi au samedi</div>
