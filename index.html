@@ -190,14 +190,35 @@ nav a:hover {
 
 /* Carte de contact à droite avec marge */
 aside.card {
-  padding: 20px;
-  background: #f8f8f8;
-  border-radius: 12px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 16px;
   margin-right: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* petite ombre pour le relief */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 320px;
+  border-top: 6px solid var(--wood); /* bandeau coloré */
 }
-
-    .contact-list{display:flex;flex-direction:column;gap:8px}
+/* Effet hover */
+aside.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+/* Liste contacts */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.contact-list a {
+  text-decoration: none;
+  color: var(--wood);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.contact-list a:hover {
+  color: var(--green);
+}
 
     /* SECTIONS */
     section{max-width:var(--container);margin:28px auto;padding:24px}
