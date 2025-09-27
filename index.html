@@ -190,14 +190,17 @@ nav a:hover {
 
 /* Carte de contact à droite avec marge */
 aside.card {
-  padding: 24px;
+  padding: 24px 32px;                 /* un peu plus de marge horizontale */
   background: #fff;
   border-radius: 16px;
   margin-right: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 320px;
-  border-top: 6px solid var(--wood); /* bandeau coloré */
+  max-width: 420px;                   /* largeur augmentée */
+  border-top: 6px solid var(--wood);  /* bandeau couleur bois */
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 /* Effet hover */
 aside.card:hover {
