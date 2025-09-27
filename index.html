@@ -131,7 +131,7 @@ nav a:hover {
   display: grid;
   grid-template-columns: 1fr 420px;
   gap: 28px;
-  align-items: start;  /* aligne le haut de la carte avec le haut du texte */
+  align-items: center;  /* aligne le haut de la carte avec le haut du texte */
 }
 
 /* Accroche */
@@ -185,9 +185,17 @@ nav a:hover {
   transform: scale(1.8); /* grossissement */
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15); /* relief */
 }
-
-
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;      /* une seule colonne */
+    gap: 20px;
+    align-items: center;
     
+     aside.card {
+    max-width: 100%;                  /* carte prend toute la largeur disponible */
+    margin-right: 0;
+  }
+}
 aside.card {
   padding: 24px;
   border-radius: 16px;
