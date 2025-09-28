@@ -188,14 +188,17 @@ nav a:hover {
 
     
 aside.card {
-  padding: 24px;
+  padding: 24px 32px;
   border-radius: 16px;
   margin-right: 20px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.06);  /* ombre légère */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  max-width: 360px;
+  max-width: 420px;
   background: linear-gradient(to right, rgba(27,57,49,0.1), rgba(36,80,70,0.1)); /* dégradé vert atténué */
-  border-top: 4px solid var(--wood);  /* bandeau bois */
+  border-top: 6px solid var(--wood);  /* bandeau bois */
+  display: flex;
+  flex-direction: column;
+  gap: 18px; 
 }
 /* Hover subtil pour toute la carte */
 aside.card:hover {
