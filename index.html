@@ -667,84 +667,46 @@ aside.card:hover {
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.coverflow-container').forEach(container => {
     const coverflow = container.querySelector('.coverflow');
-    const images = Array.from(coverflow.querySelectorAll('img'));
-    if (images.length === 0) return;
+    const imgs = coverflow.querySelectorAll('img');
+    const total = imgs.length;
+    let angle = 0;
+    const angleStep = 360 / total;
 
-    let current = Math.floor(images.length / 2);
-    const visibleRange = 4; // combien d'images visibles de chaque côté
-    const gap = 170; // espacement horizontal
-
-    function render() {
-      images.forEach((img, i) => {
-        const offset = i - current;
-        const abs = Math.abs(offset);
-
-        // SCALE et depth (ajuste ces valeurs si tu veux plus/moins d'effet)
-        const scale = Math.max(0.35, 2.6 - abs * 0.6);      // centre ≈ 2.6, bords ≈ 0.35
-        const translateX = offset * gap;
-        const translateZ = -Math.min(300, abs * 90);        // éloigne les côtés
-        const rotateY = -offset * 16;                       // légère rotation pour effet cylindrique
-
-        img.style.transform = `translate(-50%, -50%) translateX(${translateX}px) translateZ(${translateZ}px) scale(${scale}) rotateY(${rotateY}deg)`;
-        img.style.zIndex = 1000 - abs;
-        img.style.opacity = (abs > visibleRange ? 0 : 1);
-        img.style.pointerEvents = (abs > visibleRange ? 'none' : 'auto');
-      });
-    }
-
-    render();
-
-    // boutons
-    const prevBtn = container.querySelector('.cf-prev');
-    const nextBtn = container.querySelector('.cf-next');
-
-    if (prevBtn) prevBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      current = Math.max(0, current - 1);
-      render();
-    });
-    if (nextBtn) nextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      current = Math.min(images.length - 1, current + 1);
-      render();
+    // Position initiale des images
+    imgs.forEach((img, i) => {
+      const rotation = i * angleStep;
+      img.style.transform = `rotateY(${rotation}deg) translateZ(400px)`;
     });
 
-    // clic sur une image : la centrer
-    images.forEach((img, idx) => {
-      img.addEventListener('click', (e) => {
-        e.stopPropagation();
-        current = idx;
-        render();
-      });
+    // Boutons
+    const btnPrev = container.querySelector('.cf-prev');
+    const btnNext = container.querySelector('.cf-next');
+
+    btnNext.addEventListener('click', () => {
+      angle -= angleStep;
+      coverflow.style.transform = `rotateY(${angle}deg)`;
     });
 
-    // swipe tactile
-    let startX = null;
-    container.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
-    container.addEventListener('touchend', e => {
-      if (startX === null) return;
+    btnPrev.addEventListener('click', () => {
+      angle += angleStep;
+      coverflow.style.transform = `rotateY(${angle}deg)`;
+    });
+
+    // Swipe tactile pour mobile
+    let startX = 0;
+    coverflow.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    coverflow.addEventListener('touchend', e => {
       const endX = e.changedTouches[0].clientX;
-      if (endX < startX - 30) { // swipe vers la gauche -> avancer
-        current = Math.min(images.length - 1, current + 1);
-      } else if (endX > startX + 30) { // swipe vers la droite -> reculer
-        current = Math.max(0, current - 1);
+      if (endX < startX - 50) {
+        angle -= angleStep;
+      } else if (endX > startX + 50) {
+        angle += angleStep;
       }
-      startX = null;
-      render();
+      coverflow.style.transform = `rotateY(${angle}deg)`;
     });
-
-    // navigation clavier (si conteneur focusable)
-    container.tabIndex = 0;
-    container.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft') { current = Math.max(0, current - 1); render(); }
-      if (e.key === 'ArrowRight') { current = Math.min(images.length - 1, current + 1); render(); }
-    });
-
-    // optionnel : centre automatiquement l'image du milieu au chargement
-    render();
   });
-});
 </script>
+
 
 </body>
 </html>
