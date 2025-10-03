@@ -667,43 +667,31 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.coverflow-container').forEach(container => {
     const coverflow = container.querySelector('.coverflow');
     const imgs = coverflow.querySelectorAll('img');
-    const total = imgs.length;
-    let angle = 0;
-    const angleStep = 360 / total;
+    let index = 0;
 
-    // Position initiale des images
-    imgs.forEach((img, i) => {
-      const rotation = i * angleStep;
-      img.style.transform = `rotateY(${rotation}deg) translateZ(400px)`;
-    });
-
-    // Boutons
     const btnPrev = container.querySelector('.cf-prev');
     const btnNext = container.querySelector('.cf-next');
 
+    function update() {
+      imgs.forEach((img, i) => {
+        img.style.display = (i === index) ? 'block' : 'none';
+      });
+    }
+
     btnNext.addEventListener('click', () => {
-      angle -= angleStep;
-      coverflow.style.transform = `rotateY(${angle}deg)`;
+      index = (index + 1) % imgs.length;
+      update();
     });
 
     btnPrev.addEventListener('click', () => {
-      angle += angleStep;
-      coverflow.style.transform = `rotateY(${angle}deg)`;
+      index = (index - 1 + imgs.length) % imgs.length;
+      update();
     });
 
-    // Swipe tactile pour mobile
-    let startX = 0;
-    coverflow.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-    coverflow.addEventListener('touchend', e => {
-      const endX = e.changedTouches[0].clientX;
-      if (endX < startX - 50) {
-        angle -= angleStep;
-      } else if (endX > startX + 50) {
-        angle += angleStep;
-      }
-      coverflow.style.transform = `rotateY(${angle}deg)`;
-    });
+    update(); // affiche la première image au chargement
   });
+});
+
 </script>
 
 
