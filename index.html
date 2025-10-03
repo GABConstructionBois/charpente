@@ -333,30 +333,49 @@ aside.card:hover {
 .realisations-bloc h3 {
   margin: 12px 0;
 }
-.carousel {
+.coverflow-container {
+  position: relative;
+  perspective: 1000px; /* profondeur */
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.coverflow {
   display: flex;
-  gap: 16px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 10px;
-  scrollbar-width: none; /* masque scrollbar Firefox */
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
 }
-.carousel::-webkit-scrollbar {
-  display: none; /* masque scrollbar Chrome/Safari */
-}
-.carousel img {
-  flex: 0 0 auto;
-  width: 160px;   /* petite taille de base */
-  height: 120px;
+
+.coverflow img {
+  position: absolute;
+  width: 240px;
+  height: 160px;
   object-fit: cover;
   border-radius: 12px;
-  transition: transform 0.2s, opacity 0.2s;
-  scroll-snap-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  transition: transform 0.6s, opacity 0.6s;
 }
-.carousel img:hover {
-  transform: scale(1.2);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  background: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
 }
+
+.nav.prev { left: 10px; }
+.nav.next { right: 10px; }
+
 
 
 
@@ -610,33 +629,41 @@ aside.card:hover {
     }
 
     
-const carousels = document.querySelectorAll('.carousel');
+const coverflow = document.querySelector('.coverflow');
+  const imgs = coverflow.querySelectorAll('img');
+  const total = imgs.length;
+  let angle = 0;
+  const angleStep = 360 / total;
 
-  carousels.forEach(carousel => {
-    carousel.addEventListener('scroll', () => {
-      const imgs = carousel.querySelectorAll('img');
-      const center = carousel.scrollLeft + carousel.offsetWidth / 2;
-
-      imgs.forEach(img => {
-        const imgCenter = img.offsetLeft + img.offsetWidth / 2;
-        const distance = Math.abs(center - imgCenter);
-
-        // Plus la distance est grande, plus l'image est réduite
-        // Valeurs ajustées : centre ≈ 2.5x, côtés ≈ 0.5x
-        let scale = 2.5 - distance / 200; 
-        if (scale < 0.5) scale = 0.5; 
-
-        img.style.transform = `scale(${scale})`;
-        img.style.transition = "transform 0.2s"; // fluidité
-        img.style.zIndex = scale > 1 ? 2 : 1;   // image du centre au-dessus
-        img.style.opacity = scale < 0.7 ? 0.6 : 1; // extrémités un peu estompées
-      });
-    });
-
-    // Lancer une mise à jour au chargement
-    carousel.dispatchEvent(new Event('scroll'));
+  // Positionner les images sur le cylindre
+  imgs.forEach((img, i) => {
+    const rotation = i * angleStep;
+    img.style.transform = `rotateY(${rotation}deg) translateZ(400px)`;
   });
 
+  // Navigation
+  document.querySelector('.nav.next').addEventListener('click', () => {
+    angle -= angleStep;
+    coverflow.style.transform = `rotateY(${angle}deg)`;
+  });
+
+  document.querySelector('.nav.prev').addEventListener('click', () => {
+    angle += angleStep;
+    coverflow.style.transform = `rotateY(${angle}deg)`;
+  });
+
+  // Swipe tactile pour mobile
+  let startX = 0;
+  coverflow.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+  coverflow.addEventListener('touchend', e => {
+    let endX = e.changedTouches[0].clientX;
+    if (endX < startX - 50) {
+      angle -= angleStep;
+    } else if (endX > startX + 50) {
+      angle += angleStep;
+    }
+    coverflow.style.transform = `rotateY(${angle}deg)`;
+  });
   </script>
   <script src="script.js"></script>
 
