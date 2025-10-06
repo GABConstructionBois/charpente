@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title> GAB Construction Bois - Charpente & Co. </title>
+  <meta name="description" content="Charpente et construction bois écologique — savoir-faire artisanal, matériaux locaux, constructions durables." />
+  <style>
+    :root{
+      --bg:#fff;
+      --wood:#A66F3A;
+      --green:#3B8B6A;
+      --muted:#6b6b6b;
+      --container:1100px;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    body { margin:0; background: linear-gradient(to bottom,#e6f2e6,#f5f5dc); color:#222; line-height:1.5; }
+
+    a{color:var(--wood);text-decoration:none}
+
+    header{ background: linear-gradient(to right, #1b3931, #245046); border-bottom:1px solid rgba(0,0,0,0.04); }
+    .nav{ max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:18px 24px;}
+    .brand{ display:flex; gap:12px; align-items:center; }
+    .logo{ width:80px; height:80px; border-radius:10px; object-fit:cover; display:block; transition:transform .3s ease; cursor:pointer; }
+    .logo:hover{ transform:scale(1.05) }
+    .site-title{ font-weight:700; color:var(--wood); margin:0; }
+    .small.muted{ font-size:.9rem; color:var(--wood); }
+
+    section{ max-width:var(--container); margin:28px auto; padding:24px; }
+
+    /* HERO */
+    .hero{ max-width:var(--container); margin:30px auto; padding:40px; }
+    .hero-title{ font-size:clamp(36px,5vw,60px); margin:0 0 30px; background: linear-gradient(to right,#1b3931,#245046); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; color:transparent; opacity:1; }
+    .hero-grid{ display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:center; }
+    .strap{ color:var(--green); font-weight:700; margin-bottom:12px; }
+    .muted{ text-align:justify; line-height:1.6; font-size:1rem; color:#222; }
+    .cta{ display:flex; justify-content:center; gap:24px; margin-top:40px; margin-bottom:40px; }
+    .btn{ padding:12px 18px; border-radius:10px; border:0; cursor:pointer; font-weight:700; }
+    .btn-primary{ background:var(--wood); color:#fff; }
+    .btn-outline{ background:transparent; border:2px solid var(--wood); color:var(--wood); }
+    .btn:hover{ transform:scale(1.05); }
+
+    /* SERVICES */
+    .grid-4{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+    .service{ background:#fff; border-radius:12px; padding:20px; border:1px solid rgba(0,0,0,0.08); position:relative; }
+    .bubble img{ width:90px; height:90px; object-fit:cover; border-radius:50%; transition:transform .3s; }
+    .bubble img:hover{ transform:scale(2.2); }
+
+    /* REALISATIONS - Coverflow */
+    .realisations-bloc{ margin-bottom:40px; }
+    .realisations-bloc h3{ margin:12px 0; }
+
+    .coverflow-container {
+      position: relative;
+      perspective: 1200px;
+      width: 100%;
+      max-width: 1000px;
+      height: 320px;
+      margin: 16px auto 36px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent);
+      border-radius: 8px;
+      padding: 8px;
+    }
+
+    .coverflow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .coverflow img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 240px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      transform: translate(-50%,-50%);
+      transition: transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.35s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      cursor: pointer;
+      will-change: transform, opacity;
+    }
+
+    .cf-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      cursor: pointer;
+      z-index: 1200;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+    .cf-prev { left: 12px; }
+    .cf-next { right: 12px; }
+    .cf-btn:hover{ background: rgba(0,0,0,0.6); }
+
+    /* CONTACT */
+    .contact-grid{ display:grid; grid-template-columns:1fr 360px; gap:20px; }
+    input, textarea{ padding:10px; border-radius:8px; border:1px solid rgba(0,0,0,0.08); width:100%; }
+    textarea{ min-height:120px; }
+
+    /* responsive */
+    @media (max-width:900px){
+      .hero-grid{ grid-template-columns:1fr; padding:20px; }
+      .grid-4{ grid-template-columns:1fr; }
+      .contact-grid{ grid-template-columns:1fr; }
+      nav ul{ display:none; }
+      .coverflow img{ width:180px; height:120px; }
+      .coverflow-container{ height:260px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <a href="#contact"><img src="images/LOGO-GAB-NEW.webp" alt="Logo" class="logo"></a>
+        <div>
+          <div class="site-title">GAB Construction Bois - Charpente & Co.</div>
+          <div class="small muted">Artisan Charpentier traditionnel — Constructeur bois écologique</div>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#realisations">Réalisations</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <h1 class="hero-title">Bâtir l’avenir, naturellement.</h1>
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="strap">Construction bois • Charpente • Éco-responsable</div>
+          <div class="muted">
+            <p>Chez GAB Construction Bois, chaque projet est une démarche de respect de notre planète...</p>
+            <p>Je réalise chaque ouvrage de charpente et de construction bois avec rigueur et passion...</p>
+          </div>
+          <div class="cta">
+            <button class="btn btn-primary" onclick="location.href='#contact'">Demander un devis</button>
+            <a class="btn btn-outline" href="#realisations">Voir nos réalisations</a>
+          </div>
+        </div>
+
+        <aside class="card">
+          <div class="card-header">Intervention :<br>EST Alpes-Maritimes · Monaco</div>
+          <div class="contact-list">
+            <div><strong>Téléphone :</strong><br><a href="tel:+33664755373">06 64 75 53 73</a></div>
+            <div><strong>Email :</strong><br><a href="mailto:g.ferrandiz06@compagnons-du-devoir.fr">g.ferrandiz06@compagnons-du-devoir.fr</a></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2>Mes services</h2>
+      <div class="grid-4" style="margin-top:14px">
+        <div class="service">
+          <h3>Charpente traditionnelle</h3>
+          <p>La charpente structure votre maison ...</p>
+          <div class="bubble"><img src="images/maquette-GF.jpg" alt="Charpente"></div>
+        </div>
+
+        <div class="service">
+          <h3>Aménagement intérieur / extérieur</h3>
+          <p>Aménagements intérieurs et extérieurs sur mesure ...</p>
+          <div class="bubble"><img src="images/cuisine-exterieure.jpg" alt="Aménagement"></div>
+        </div>
+
+        <div class="service">
+          <h3>Ossature bois - Extensions & Bardage</h3>
+          <p>Projets en ossature, bardage et extension ...</p>
+          <div class="bubble"><img src="images/support-bardage.jpg" alt="Bardage"></div>
+        </div>
+
+        <div class="service">
+          <h3>Rénovation & isolation écologique</h3>
+          <p>Solutions écologiques et isolations performantes ...</p>
+          <div class="bubble"><img src="images/laine-de-bois.jpg" alt="Isolation"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="realisations">
+      <h2>Réalisations</h2>
+      <p class="muted">Réalisation artisanale sur mesure.</p>
+
+      <!-- Charpente traditionnelle -->
+      <div class="realisations-bloc">
+        <h3>Charpente traditionnelle</h3>
+        <div class="coverflow-container">
+          <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
+          <div class="coverflow">
+            <img src="images/maquette-GF.jpg" alt="">
+            <img src="images/charpe-ferme-biase-GF.jpg" alt="">
+            <img src="images/Charpente-mq-gf-lp.jpg" alt="">
+            <img src="images/abris-a-bois.jpg" alt="">
+            <img src="images/charpente-meleze.jpg" alt="">
+            <img src="images/charpente-entree.jpg" alt="">
+            <img src="images/charpente-ossature.jpg" alt="">
+            <img src="images/charpente.jpg" alt="">
+            <img src="images/fermes.jpg" alt="">
+            <img src="images/trait-de-jupiter.jpg" alt="">
+          </div>
+          <button class="cf-btn cf-next" aria-label="Suivant">›</button>
+        </div>
+      </div>
+
+      <!-- Ossature & Bardage -->
+      <div class="realisations-bloc">
+        <h3>Ossature & Bardage</h3>
+        <div class="coverflow-container">
+          <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
+          <div class="coverflow">
+            <img src="images/bardage-exterieur.jpg" alt="">
+            <img src="images/bois-projet.jpg" alt="">
+            <img src="images/ensemble.jpg" alt="">
+            <img src="images/cuisine-exterieur.jpg" alt="">
+          </div>
+          <button class="cf-btn cf-next" aria-label="Suivant">›</button>
+        </div>
+      </div>
+
+      <!-- Aménagements -->
+      <div class="realisations-bloc">
+        <h3>Aménagements ext./int.</h3>
+        <div class="coverflow-container">
+          <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
+          <div class="coverflow">
+            <img src="images/cuisine-exterieur.jpg" alt="">
+            <img src="images/abri-bois.jpg" alt="">
+            <img src="images/terrasse.jpg" alt="">
+          </div>
+          <button class="cf-btn cf-next" aria-label="Suivant">›</button>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="contact">
+      <h2>Contact & Devis</h2>
+      <p class="muted">Remplis le formulaire ci-dessous ou contacte-nous directement.</p>
+      <div class="contact-grid" style="margin-top:12px">
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <input type="text" id="name" placeholder="Nom et prénom" required>
+          <input type="tel" id="phone" placeholder="Téléphone" required>
+          <input type="email" id="email" placeholder="Email" required>
+          <input type="text" id="subject" placeholder="Objet (ex: Devis charpente)" required>
+          <textarea id="message" placeholder="Décris le projet..." required></textarea>
+          <div style="display:flex;gap:10px;align-items:center">
+            <button class="btn btn-primary" type="submit">Envoyer la demande</button>
+            <div class="small muted">OU utilise : <a href="mailto:contact@charpente-bois-exemple.fr">contact@charpente-bois-exemple.fr</a></div>
+          </div>
+          <div id="formMsg" class="small muted" style="margin-top:8px"></div>
+        </form>
+
+        <aside class="card">
+          <h3>Infos pratiques</h3>
+          <p class="muted">Zone d'intervention : Provence-Alpes-Côte d'Azur.</p>
+          <p class="muted">Assurance décennale, matériaux locaux, solutions écologiques.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner" style="max-width:var(--container);margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:18px;">
+      <div class="small muted">© 2025 Charpente & Bois Éco — Tous droits réservés</div>
+      <div class="small">Conception : modèle rapide • <a href="#contact">Contact</a></div>
+    </div>
+  </footer>
+
+  <!-- Script unique (handleSubmit + coverflow multi-blocs) -->
+  <script>
+  function handleSubmit(e){
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    const body = encodeURIComponent(
+      `Nom: ${name}\nTéléphone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`
+    );
+    const mailto = `mailto:contact@charpente-bois-exemple.fr?subject=${encodeURIComponent(subject)}&body=${body}`;
+    window.location.href = mailto;
+    document.getElementById('formMsg').textContent = "Votre client mail devrait s'ouvrir. Si rien ne se passe, utilisez l'adresse indiquée.";
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.coverflow-container').forEach(container => {
+      const coverflow = container.querySelector('.coverflow');
+      const images = Array.from(coverflow.querySelectorAll('img'));
+      if (!images.length) return;
+
+      // configuration (ajuste si tu veux effet plus/moins prononcé)
+      const cfg = {
+        gap: 170,            // espace horizontal entre images
+        centerScale: 2.6,    // échelle image centrale
+        sideScaleStep: 0.6,  // réduction par pas depuis le centre
+        maxVisible: 4,       // nombre d'images visibles de chaque côté
+        zStep: 90,           // profondeur par pas
+        rotateStep: 16       // rotation Y par pas
+      };
+
+      let current = Math.floor(images.length / 2);
+
+      function render() {
+        images.forEach((img, i) => {
+          const offset = i - current;
+          const abs = Math.abs(offset);
+          const scale = Math.max(0.35, cfg.centerScale - abs * cfg.sideScaleStep);
+          const translateX = offset * cfg.gap;
+          const translateZ = -Math.min(300, abs * cfg.zStep);
+          const rotateY = -offset * cfg.rotateStep;
+
+          img.style.transform = `
+            translate(-50%, -50%)
+            translateX(${translateX}px)
+            translateZ(${translateZ}px)
+            scale(${scale})
+            rotateY(${rotateY}deg)
+          `;
+          img.style.zIndex = 10000 - abs;
+          img.style.opacity = (abs > cfg.maxVisible ? '0' : '1');
+          img.style.pointerEvents = (abs > cfg.maxVisible ? 'none' : 'auto');
+        });
+      }
+
+      // initial render
+      render();
+
+      // boutons
+      const prevBtn = container.querySelector('.cf-prev');
+      const nextBtn = container.querySelector('.cf-next');
+      if (prevBtn) prevBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.max(0, current - 1); render(); });
+      if (nextBtn) nextBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.min(images.length - 1, current + 1); render(); });
+
+      // clic image -> centrer
+      images.forEach((img, idx) => img.addEventListener('click', (e) => { e.stopPropagation(); current = idx; render(); }));
+
+      // swipe tactile
+      let startX = null;
+      container.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+      container.addEventListener('touchend', e => {
+        if (startX === null) return;
+        const endX = e.changedTouches[0].clientX;
+        if (endX < startX - 30) current = Math.min(images.length - 1, current + 1);
+        if (endX > startX + 30) current = Math.max(0, current - 1);
+        startX = null;
+        render();
+      });
+
+      // clavier
+      container.tabIndex = 0;
+      container.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') { current = Math.max(0, current - 1); render(); }
+        if (e.key === 'ArrowRight') { current = Math.min(images.length - 1, current + 1); render(); }
+      });
+
+      // resize -> redraw (garde centré)
+      window.addEventListener('resize', () => render());
+    });
+  });
+  </script>
+
+</body>
+</html>
