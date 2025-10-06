@@ -8,130 +8,432 @@
   <style>
     :root{
       --bg:#fff;
-      --wood:#A66F3A;
+      --wood:#A66F3A; /* bois */
+      --wood-2:#8B5A2B;
       --green:#3B8B6A;
       --muted:#6b6b6b;
+      --radius:12px;
       --container:1100px;
+      --max-width:1100px;
+      --accent:#EDE3D8;
       font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
     *{box-sizing:border-box}
-    body { margin:0; background: linear-gradient(to bottom,#e6f2e6,#f5f5dc); color:#222; line-height:1.5; }
-
+  body {
+  margin: 0;
+  background: linear-gradient(to bottom, #e6f2e6, #f5f5dc);
+  color: #222;
+  line-height: 1.5;
+}
     a{color:var(--wood);text-decoration:none}
 
-    header{ background: linear-gradient(to right, #1b3931, #245046); border-bottom:1px solid rgba(0,0,0,0.04); }
-    .nav{ max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:18px 24px;}
-    .brand{ display:flex; gap:12px; align-items:center; }
-    .logo{ width:80px; height:80px; border-radius:10px; object-fit:cover; display:block; transition:transform .3s ease; cursor:pointer; }
-    .logo:hover{ transform:scale(1.05) }
-    .site-title{ font-weight:700; color:var(--wood); margin:0; }
-    .small.muted{ font-size:.9rem; color:var(--wood); }
+header {
+  background: linear-gradient(to right, #1b3931, #245046); /* dégradé horizontal vert foncé */
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+}
 
-    section{ max-width:var(--container); margin:28px auto; padding:24px; }
+.nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* gauche/droite */
+  padding: 18px 24px;
+}
 
-    /* HERO */
-    .hero{ max-width:var(--container); margin:30px auto; padding:40px; }
-    .hero-title{ font-size:clamp(36px,5vw,60px); margin:0 0 30px; background: linear-gradient(to right,#1b3931,#245046); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; color:transparent; opacity:1; }
-    .hero-grid{ display:grid; grid-template-columns:1fr 420px; gap:28px; align-items:center; }
-    .strap{ color:var(--green); font-weight:700; margin-bottom:12px; }
-    .muted{ text-align:justify; line-height:1.6; font-size:1rem; color:#222; }
-    .cta{ display:flex; justify-content:center; gap:24px; margin-top:40px; margin-bottom:40px; }
-    .btn{ padding:12px 18px; border-radius:10px; border:0; cursor:pointer; font-weight:700; }
-    .btn-primary{ background:var(--wood); color:#fff; }
-    .btn-outline{ background:transparent; border:2px solid var(--wood); color:var(--wood); }
-    .btn:hover{ transform:scale(1.05); }
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
 
-    /* SERVICES */
-    .grid-4{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
-    .service{ background:#fff; border-radius:12px; padding:20px; border:1px solid rgba(0,0,0,0.08); position:relative; }
-    .bubble img{ width:90px; height:90px; object-fit:cover; border-radius:50%; transition:transform .3s; }
-    .bubble img:hover{ transform:scale(2.2); }
+.logo {
+  width: 225px;
+  height: 225px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: block; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer; /* ✅ curseur main pour montrer que c’est cliquable */
+}  /* Zoom au survol */
+.logo:hover {
+  transform: scale(1.4); /* grossit légèrement */
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+}
 
-    /* REALISATIONS - Coverflow */
-    .realisations-bloc{ margin-bottom:40px; }
-    .realisations-bloc h3{ margin:12px 0; }
+.site-title {
+  font-weight: 700;
+  color: #A66F3A; /* couleur bois */
+  margin: 0;
+}
 
-    .coverflow-container {
-      position: relative;
-      perspective: 1200px;
-      width: 100%;
-      max-width: 1000px;
-      height: 320px;
-      margin: 16px auto 36px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent);
-      border-radius: 8px;
-      padding: 8px;
-    }
+.small.muted {
+  display: block;
+  font-size: 0.9rem;
+  color: #A66F3A; /* sous-titre bois */
+}
 
-    .coverflow {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
+nav ul {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-    .coverflow img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 240px;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 12px;
-      transform: translate(-50%,-50%);
-      transition: transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.35s;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      cursor: pointer;
-      will-change: transform, opacity;
-    }
+nav a {
+  font-weight: 600;
+  color: #EDE3D8; /* beige clair */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
 
-    .cf-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 48px;
-      height: 48px;
-      border-radius: 999px;
-      border: 0;
-      background: rgba(0,0,0,0.45);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      cursor: pointer;
-      z-index: 1200;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-    }
-    .cf-prev { left: 12px; }
-    .cf-next { right: 12px; }
-    .cf-btn:hover{ background: rgba(0,0,0,0.6); }
+nav a:hover {
+  color: #A66F3A; /* bois au survol */
+}
 
-    /* CONTACT */
-    .contact-grid{ display:grid; grid-template-columns:1fr 360px; gap:20px; }
-    input, textarea{ padding:10px; border-radius:8px; border:1px solid rgba(0,0,0,0.08); width:100%; }
-    textarea{ min-height:120px; }
+
+
+
+
+    
+
+/* HERO global */
+.hero {
+  max-width: var(--container);
+  margin: 30px auto;
+  padding: 40px;
+}
+
+/* Titre responsive sur une ligne */
+.hero-title {
+  font-size: clamp(36px, 5vw, 60px);
+  white-space: nowrap;          
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0 30px;             /* espace sous le titre */
+  background: linear-gradient(to right, #1b3931, #245046);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  /* Animation au chargement */
+  opacity: 0;
+  transform: translateX(100px);
+  animation: slideIn 1s ease-out forwards;
+  animation-delay: 0.5s;
+}
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Grille texte + carte */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 28px;
+  align-items: center;  /* aligne le haut de la carte avec le haut du texte */
+}
+
+/* Accroche */
+.strap {
+  color: var(--green);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* Texte justifié */
+.muted {
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #222;
+}
+
+.muted p {
+  margin-bottom: 1em;
+}
+
+    
+/* Boutons centrés côte à côte */
+.cta {
+  display: flex;
+  justify-content: center;
+  gap: 24px;          
+  margin-top: 40px;   
+  margin-bottom: 40px;
+}
+/* Boutons styles */
+.btn {
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 700;
+}
+.btn-primary {
+  background: var(--wood);
+  color: white;
+}
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--wood);
+  color: var(--wood);
+}
+    /* Effet hover */
+.btn:hover {
+  transform: scale(1.8); /* grossissement */
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15); /* relief */
+}
+
+    
+aside.card {
+  padding: 24px 32px;
+  border-radius: 16px;
+  margin-right: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);  /* ombre légère */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  max-width: 420px;
+  background: linear-gradient(to right, rgba(27,57,49,0.1), rgba(36,80,70,0.1)); /* dégradé vert atténué */
+  border-top: 6px solid var(--wood);  /* bandeau bois */
+  display: flex;
+  flex-direction: column;
+  gap: 18px; 
+}
+/* Hover subtil pour toute la carte */
+aside.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+/* Entête centré simple */
+.card-header {
+  text-align: center;
+  font-weight: 600;
+  color: var(--wood);
+  margin-bottom: 14px;
+  font-size: 1rem;
+  line-height: 1.4;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+/* Liste contacts */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.contact-list a {
+  text-decoration: none;
+  color: var(--wood);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.contact-list a:hover {
+  color: var(--green);
+}
+
+
+
+
+    
+    /* SECTIONS */
+    section{max-width:var(--container);margin:28px auto;padding:24px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  
+    /* --- SECTION SERVICES --- */
+/* GRID 2x2 */
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Service box */
+.service {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(0,0,0,0.08);
+  text-align: justify;
+  transition: transform 0.2s ease;
+  overflow: visible; /* ✅ permet à la bulle de dépasser */
+  position: relative;
+}
+
+/* Effet léger sur la carte */
+.service:hover {
+  transform: translateY(-4px);
+}
+
+/* Conteneur bulle */
+.bubble {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+/* Bulle image */
+.bubble img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 2;
+}
+
+/* Zoom au survol */
+.bubble img:hover {
+  transform: scale(2.5); /* grossit vraiment */
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+}
+
+/* Texte */
+.service h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+.service p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .grid-4 { grid-template-columns: repeat(2,1fr); }
+}
+
+@media (max-width: 700px) {
+  .grid-4 { grid-template-columns: 1fr; }
+  .service {
+    aspect-ratio: auto;     /* pas carré strict sur mobile */
+    min-height: 280px;      /* hauteur sympa */
+    padding: 24px;
+  }
+  .service-photo {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+
+
+    
+
+ .realisations-bloc {
+  margin-bottom: 40px;
+}
+.realisations-bloc h3 {
+  margin: 12px 0;
+}
+/* Coverflow container */
+.coverflow-container {
+  position: relative;
+  perspective: 1200px;
+  width: 100%;
+  max-width: 1000px;
+  height: 320px;
+  margin: 28px auto;
+  overflow: hidden;
+}
+
+/* Zone où les images sont positionnées (images en absolute) */
+.coverflow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Images */
+.coverflow img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.35s;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  cursor: pointer;
+  will-change: transform, opacity;
+}
+
+/* Boutons flèches (évite collision avec .nav header) */
+.cf-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  cursor: pointer;
+  z-index: 1200;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+.cf-btn:hover { background: rgba(0,0,0,0.6); }
+
+.cf-prev { left: 12px; }
+.cf-next { right: 12px; }
+
+/* Masquer boutons sur très petit écran si tu veux (optionnel) */
+/* @media (max-width: 520px) { .cf-btn { display: none; } } */
+
+
+
+
+
+    
+
+    /* CONTACT FORM */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
+    form{display:flex;flex-direction:column;gap:10px}
+    input,textarea{padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)}
+    textarea{min-height:120px}
+
+    footer{background:#fafafa;border-top:1px solid rgba(0,0,0,0.04);padding:18px}
+    .footer-inner{max-width:var(--container);margin:0 auto;display:flex;justify-content:space-between;align-items:center}
 
     /* responsive */
     @media (max-width:900px){
-      .hero-grid{ grid-template-columns:1fr; padding:20px; }
-      .grid-4{ grid-template-columns:1fr; }
-      .contact-grid{ grid-template-columns:1fr; }
-      nav ul{ display:none; }
-      .coverflow img{ width:180px; height:120px; }
-      .coverflow-container{ height:260px; }
+      .hero{grid-template-columns:1fr;padding:20px}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .grid-3{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      nav ul{display:none}
     }
+
+    /* small helpers */
+    .small{font-size:0.9rem}
+    .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(59,139,106,0.12);color:var(--green);font-weight:700}
+
   </style>
 </head>
-
 <body>
   <header>
     <div class="nav">
       <div class="brand">
-        <a href="#contact"><img src="images/LOGO-GAB-NEW.webp" alt="Logo" class="logo"></a>
+        <a href="#contact">
+       <img src="images/LOGO GAB NEW.webp" alt="Logo GAB Construction Bois" class="logo" />
+          </a>
         <div>
-          <div class="site-title">GAB Construction Bois - Charpente & Co.</div>
-          <div class="small muted">Artisan Charpentier traditionnel — Constructeur bois écologique</div>
+          <div class="site-title"> GAB Construction Bois - Charpente & Co.</div>
+          <div class="small muted"> Artisan Charpentier traditionnel — Constructeur bois écologique</div>
         </div>
       </div>
       <nav>
@@ -145,127 +447,177 @@
     </div>
   </header>
 
-  <main>
-    <section class="hero" id="accueil">
-      <h1 class="hero-title">Bâtir l’avenir, naturellement.</h1>
-      <div class="hero-grid">
-        <div class="hero-left">
-          <div class="strap">Construction bois • Charpente • Éco-responsable</div>
-          <div class="muted">
-            <p>Chez GAB Construction Bois, chaque projet est une démarche de respect de notre planète...</p>
-            <p>Je réalise chaque ouvrage de charpente et de construction bois avec rigueur et passion...</p>
-          </div>
-          <div class="cta">
-            <button class="btn btn-primary" onclick="location.href='#contact'">Demander un devis</button>
-            <a class="btn btn-outline" href="#realisations">Voir nos réalisations</a>
-          </div>
-        </div>
+<main>
+ <section class="hero" id="accueil">
 
-        <aside class="card">
-          <div class="card-header">Intervention :<br>EST Alpes-Maritimes · Monaco</div>
-          <div class="contact-list">
-            <div><strong>Téléphone :</strong><br><a href="tel:+33664755373">06 64 75 53 73</a></div>
-            <div><strong>Email :</strong><br><a href="mailto:g.ferrandiz06@compagnons-du-devoir.fr">g.ferrandiz06@compagnons-du-devoir.fr</a></div>
-          </div>
-        </aside>
-      </div>
-    </section>
+  <!-- Titre responsive sur une ligne -->
+  <h1 class="hero-title">Bâtir l’avenir, naturellement.</h1>
 
-    <section id="services">
-      <h2>Mes services</h2>
-      <div class="grid-4" style="margin-top:14px">
-        <div class="service">
-          <h3>Charpente traditionnelle</h3>
-          <p>La charpente structure votre maison ...</p>
-          <div class="bubble"><img src="images/maquette-GF.jpg" alt="Charpente"></div>
-        </div>
+  <div class="hero-grid">
 
-        <div class="service">
-          <h3>Aménagement intérieur / extérieur</h3>
-          <p>Aménagements intérieurs et extérieurs sur mesure ...</p>
-          <div class="bubble"><img src="images/cuisine-exterieure.jpg" alt="Aménagement"></div>
-        </div>
-
-        <div class="service">
-          <h3>Ossature bois - Extensions & Bardage</h3>
-          <p>Projets en ossature, bardage et extension ...</p>
-          <div class="bubble"><img src="images/support-bardage.jpg" alt="Bardage"></div>
-        </div>
-
-        <div class="service">
-          <h3>Rénovation & isolation écologique</h3>
-          <p>Solutions écologiques et isolations performantes ...</p>
-          <div class="bubble"><img src="images/laine-de-bois.jpg" alt="Isolation"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="realisations">
-      <h2>Réalisations</h2>
-      <p class="muted">Réalisation artisanale sur mesure.</p>
-
-      <!-- Charpente traditionnelle -->
-      <div class="realisations-bloc">
-        <h3>Charpente traditionnelle</h3>
-        <div class="coverflow-container">
-          <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
-          <div class="coverflow">
-            <img src="images/maquette-GF.jpg" alt="">
-            <img src="images/charpe-ferme-biase-GF.jpg" alt="">
-            <img src="images/Charpente-mq-gf-lp.jpg" alt="">
-            <img src="images/abris-a-bois.jpg" alt="">
-            <img src="images/charpente-meleze.jpg" alt="">
-            <img src="images/charpente-entree.jpg" alt="">
-            <img src="images/charpente-ossature.jpg" alt="">
-            <img src="images/charpente.jpg" alt="">
-            <img src="images/fermes.jpg" alt="">
-            <img src="images/trait-de-jupiter.jpg" alt="">
-          </div>
-          <button class="cf-btn cf-next" aria-label="Suivant">›</button>
-        </div>
+    <div class="hero-left">
+      <div class="strap">Construction bois • Charpente • Éco-responsable</div>
+      <div class="muted">
+<p>Chez GAB Construction Bois, chaque projet est une démarche de respect de notre planète et un engagement pour les générations à venir.</p>
+<p>Je réalise chaque ouvrage de charpente et de construction bois avec rigueur et passion, en intégrant les dernières normes de construction et une promesse écologique forte, tout en préservant les traditions artisanales transmises par les Compagnons du Devoir.</p>
+<p>Choisir GAB Construction Bois, c’est concevoir un ouvrage à votre image, valoriser et améliorer votre cadre de vie, mais aussi créer un habitat confortable et sain sur le long terme.</p>
+<p>Mon expérience passée dans le soin, mes voyages et mon rapport à la nature m’ont appris qu’un lieu en équilibre contribue à l’équilibre de ceux qui l’habitent. C’est avec cette sensibilité que je conçois des espaces en bois, pensés pour être durables, fonctionnels, chaleureux et favoriser le bien-être de ceux qui y vivent.</p>
       </div>
 
-      <!-- Ossature & Bardage -->
-      <div class="realisations-bloc">
-        <h3>Ossature & Bardage</h3>
-        <div class="coverflow-container">
-          <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
-          <div class="coverflow">
-            <img src="images/bardage-exterieur.jpg" alt="">
-            <img src="images/bois-projet.jpg" alt="">
-            <img src="images/ensemble.jpg" alt="">
-            <img src="images/cuisine-exterieur.jpg" alt="">
-          </div>
-          <button class="cf-btn cf-next" aria-label="Suivant">›</button>
-        </div>
+      <div class="cta">
+        <button class="btn btn-primary" onclick="location.href='#contact'">Demander un devis</button>
+        <a class="btn btn-outline" href="#realisations">Voir nos réalisations</a>
       </div>
+    </div>
 
-      <!-- Aménagements -->
-      <div class="realisations-bloc">
-        <h3>Aménagements ext./int.</h3>
-        <div class="coverflow-container">
-          <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
-          <div class="coverflow">
-            <img src="images/cuisine-exterieur.jpg" alt="">
-            <img src="images/abri-bois.jpg" alt="">
-            <img src="images/terrasse.jpg" alt="">
-          </div>
-          <button class="cf-btn cf-next" aria-label="Suivant">›</button>
-        </div>
+   <aside class="card">
+  <div class="card-header">
+    Intervention :<br>
+    EST Alpes-Maritimes <br>
+    Monaco & Italian Border
+  </div>
+  <div class="contact-list">
+        <div><strong>Téléphone :</strong> <br>
+           <a href="tel:+33664755373">📞 06 64 75 53 73</a></div>
+        <div><strong>Email :</strong> <br> 
+          <a href="mailto:g.ferrandiz06@compagnons-du-devoir.fr">✉️ g.ferrandiz06@compagnons-du-devoir.fr</a></div>
+        <div class="small muted"><strong>Disponibilité : du mardi au samedi</strong></div>
       </div>
+    </aside>
 
-    </section>
+  </div>
+</section>
+</main>
+
+
+  <section id="services">
+  <h2>Mes services</h2>
+  <p class="muted"> 
+    
+   <div class="services-intro">
+  <p>De l’extension de maison en ossature bois isolée <strong>naturellement</strong> à un carport élégant, en passant par des aménagements extérieurs et/ou intérieurs, je m’engage à concevoir la <strong>réalisation dont vous rêvez</strong>.</p>
+  <p>Je vous propose d’adapter la structure et l’<strong>esthétique</strong> à votre aménagement intérieur, tout en respectant les contraintes d’un permis de construire. Vous choisissez les <strong>essences de bois</strong> qui conviennent à votre projet, en alliant durabilité et beauté.</p>
+  <p>Pour des projets simples comme pour des conceptions plus techniques, j’ai été formé par les <strong>Compagnons du Devoir</strong> en tant que <strong>charpentier bois hautement qualifié</strong>. Après plusieurs années dans les <strong>Alpes</strong>, je reviens à mes racines, près de la <strong>Méditerranée</strong>, pour mettre mon savoir-faire au service de vos projets.</p>
+  <p>Je suis en train d’équiper un <strong>atelier complet</strong>, qui me permet de concevoir, tailler et lever <strong>votre projet sur mesure</strong>, pour que chaque réalisation soit fonctionnelle, solide et esthétiquement réussie.</p>
+</div>
+
+    
+  <div class="grid-4" style="margin-top:14px">
+   
+    <div class="service">
+      <h3>Charpente traditionnelle</h3>
+  <p>La charpente structure votre maison : ossature de la toiture, elle peut être <strong>apparente ou cachée</strong>. Elle se compose de <strong>fermes</strong> — pièces principales porteuses — et de pièces secondaires comme les <strong>pannes et chevrons</strong>, qui supportent la couverture et l’isolation.</p>
+  <p>Je réalise l’assemblage de manière traditionnelle, avec <strong>tenon-mortaise</strong>, sans vis, pour garantir <strong>solidité, durabilité et esthétique</strong>.</p>
+  <p>Chaque charpente est conçue sur mesure pour s’intégrer parfaitement à votre projet.</p>
+       <!-- bulle photo -->
+  <div class="bubble">
+    <img src="images/maquette GF.jpg" alt="Charpente traditionnelle">
+  </div>
+    </div>
+    
+     <div class="service">
+  <h3>Aménagement intérieur / extérieur</h3>
+  <p>Je conçois et réalise des <strong>aménagements intérieurs et extérieurs sur mesure</strong>, alliant <strong>esthétique, durabilité et confort</strong>.</p>
+  <p>Parmi mes réalisations : <strong>pergolas, carports, poolhouses, terrasses et balcons</strong> pour vos espaces extérieurs, ainsi que <strong>escaliers, mezzanines, solivages, cloisons et habillages de murs</strong> pour l’intérieur. Je crée également des <strong>cuisines d’été, marquises et auvents</strong> pour valoriser votre espace de vie.</p>
+ <p>Chaque projet est pensé pour être <strong>fonctionnel, durable et harmonieux</strong>, en optimisant vos espaces tout en mettant en valeur le bois et la qualité artisanale.</p>
+ <!-- bulle photo -->
+   <div class="bubble">
+    <img src="images/cuisine exterieure.jpg" alt="Aménagement bois">
+  </div>
+     </div>
+
+    <div class="service">  
+  <h3>Ossature bois - Extensions & Bardage</h3>
+  <p>Je conçois et réalise des projets sur mesure en bois, de <strong>l’ossature de votre maison</strong> à une <strong>extension élégante</strong> ou un <strong>bardage soigné</strong>. Chaque projet allie <strong>durabilité, esthétique et confort</strong>, avec des bois issus de forêts gérées durablement.</p>
+  <p>Mon savoir-faire me permet d’adapter la structure et le style à votre habitation, en respectant les normes et contraintes techniques. Chaque détail est travaillé pour que votre projet soit <strong>solide, fonctionnel et harmonieux</strong>.</p>
+      <div class="bubble">
+      <img src="images/support bardage.jpg" alt="Ossature bois">
+    </div>
+    </div>
+
+   <div class="service">
+  <h3>Rénovation & isolation écologique</h3>
+  <p>Je vous accompagne dans la rénovation de votre habitat avec des solutions <strong>écologiques, performantes et durables</strong>.</p>
+  <p>De la remise à neuf de structures anciennes à la modification de toiture, j’utilise <strong>la laine de bois</strong> pour <strong>isolation thermique, impact carbone négatif et qualité de l’air intérieur</strong>.</p>
+  <p>Chaque projet est réalisé avec <strong>rigueur et précision</strong>, en intégrant l’<strong>étanchéité à l’air</strong> et les <strong>normes énergétiques actuelles</strong>.</p>
+<!-- bulle photo -->
+   <div class="bubble">
+    <img src="images/laine-de-bois.jpg" alt="isolation">
+  </div>
+   </div>
+
+  </div>
+</section>
+
+
+
+ <section id="realisations">
+  <h2>Réalisations</h2>
+  <p class="muted">Réalisation artisanale sur mesure.</p>
+    
+  <!-- Bloc 1 : Charpente traditionnelle -->
+  <div class="realisations-bloc">
+    <h3>Charpente traditionnelle</h3>
+    <div class="coverflow-container">
+      <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
+      <div class="coverflow">
+        <img src="images/maquette GF.jpg">
+        <img src="images/charpe ferme biase gf.jpg">
+        <img src="images/Charpente mq gf lp.jpg">
+        <img src="images/abris a bois.jpg">
+        <img src="images/charpente mélèze.jpg">
+        <img src="images/charpente entree.jpg">
+        <img src="images/charpente ossature.jpg">
+        <img src="images/charpente.jpg">
+        <img src="images/fermes.jpg">
+        <img src="images/trait de jupiter.jpg">
+      </div>
+      <button class="cf-btn cf-next" aria-label="Suivant">›</button>
+    </div>
+  </div>
+
+  <!-- Bloc 2 : Ossature & Bardage -->
+  <div class="realisations-bloc">
+    <h3>Ossature & Bardage</h3>
+    <div class="coverflow-container">
+      <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
+      <div class="coverflow">
+        <img src="images/bardage exterieur.jpg">
+        <img src="images/bois projet.jpg">
+        <img src="images/ensemble.jpg">
+        <img src="images/cuisine exterieur.jpg">
+      </div>
+      <button class="cf-btn cf-next" aria-label="Suivant">›</button>
+    </div>
+  </div>
+
+  <!-- Bloc 3 : Aménagements -->
+  <div class="realisations-bloc">
+    <h3>Aménagements ext./int.</h3>
+    <div class="coverflow-container">
+      <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
+      <div class="coverflow">
+        <img src="images/cuisine exterieur.jpg">
+        <img src="images/abri-bois.jpg">
+        <img src="images/terrasse.jpg">
+      </div>
+      <button class="cf-btn cf-next" aria-label="Suivant">›</button>
+    </div>
+  </div>
+
+</section>
+
 
     <section id="contact">
       <h2>Contact & Devis</h2>
-      <p class="muted">Remplis le formulaire ci-dessous ou contacte-nous directement.</p>
+      <p class="muted">Remplis le formulaire ci‑dessous ou contacte‑nous directement.</p>
       <div class="contact-grid" style="margin-top:12px">
         <form id="contactForm" onsubmit="handleSubmit(event)">
           <input type="text" id="name" placeholder="Nom et prénom" required>
           <input type="tel" id="phone" placeholder="Téléphone" required>
           <input type="email" id="email" placeholder="Email" required>
           <input type="text" id="subject" placeholder="Objet (ex: Devis charpente)" required>
-          <textarea id="message" placeholder="Décris le projet..." required></textarea>
+          <textarea id="message" placeholder="Décris le projet (surface, localisation, contraintes...)" required></textarea>
           <div style="display:flex;gap:10px;align-items:center">
             <button class="btn btn-primary" type="submit">Envoyer la demande</button>
             <div class="small muted">OU utilise : <a href="mailto:contact@charpente-bois-exemple.fr">contact@charpente-bois-exemple.fr</a></div>
@@ -275,115 +627,91 @@
 
         <aside class="card">
           <h3>Infos pratiques</h3>
-          <p class="muted">Zone d'intervention : Provence-Alpes-Côte d'Azur.</p>
+          <p class="muted">Zone d'intervention : Provences-Alpes-Côte d'éazur. Déplacements étudiés selon chantier.</p>
           <p class="muted">Assurance décennale, matériaux locaux, solutions écologiques.</p>
         </aside>
       </div>
     </section>
+
   </main>
 
   <footer>
-    <div class="footer-inner" style="max-width:var(--container);margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding:18px;">
+    <div class="footer-inner">
       <div class="small muted">© 2025 Charpente & Bois Éco — Tous droits réservés</div>
       <div class="small">Conception : modèle rapide • <a href="#contact">Contact</a></div>
     </div>
   </footer>
 
-  <!-- Script unique (handleSubmit + coverflow multi-blocs) -->
   <script>
-  function handleSubmit(e){
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
+    function handleSubmit(e){
+      e.preventDefault();
+      const name=document.getElementById('name').value.trim();
+      const email=document.getElementById('email').value.trim();
+      const phone=document.getElementById('phone').value.trim();
+      const subject=document.getElementById('subject').value.trim();
+      const message=document.getElementById('message').value.trim();
 
-    const body = encodeURIComponent(
-      `Nom: ${name}\nTéléphone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`
-    );
-    const mailto = `mailto:contact@charpente-bois-exemple.fr?subject=${encodeURIComponent(subject)}&body=${body}`;
-    window.location.href = mailto;
-    document.getElementById('formMsg').textContent = "Votre client mail devrait s'ouvrir. Si rien ne se passe, utilisez l'adresse indiquée.";
-  }
+      // Simple mailto fallback so the form works without backend
+      const body = encodeURIComponent(
+        `Nom: ${name}\nTéléphone: ${phone}\nEmail: ${email}\n\nMessage:\n${message}`
+      );
+      const mailto = `mailto:contact@charpente-bois-exemple.fr?subject=${encodeURIComponent(subject)}&body=${body}`;
+      // Try to open mail client
+      window.location.href = mailto;
+      document.getElementById('formMsg').textContent = 'Votre client mail devrait s'ouvrir pour envoyer le message. Si rien ne se passe, utilisez l'adresse mail indiquée.';
+    }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll('.coverflow-container').forEach(container => {
-      const coverflow = container.querySelector('.coverflow');
-      const images = Array.from(coverflow.querySelectorAll('img'));
-      if (!images.length) return;
 
-      // configuration (ajuste si tu veux effet plus/moins prononcé)
-      const cfg = {
-        gap: 170,            // espace horizontal entre images
-        centerScale: 2.6,    // échelle image centrale
-        sideScaleStep: 0.6,  // réduction par pas depuis le centre
-        maxVisible: 4,       // nombre d'images visibles de chaque côté
-        zStep: 90,           // profondeur par pas
-        rotateStep: 16       // rotation Y par pas
-      };
+    
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.coverflow-container').forEach(container => {
+    const coverflow = container.querySelector('.coverflow');
+    const imgs = coverflow.querySelectorAll('img');
+    const total = imgs.length;
+    let angle = 0;
+    const angleStep = 360 / total;
 
-      let current = Math.floor(images.length / 2);
+    // Position initiale des images
+    imgs.forEach((img, i) => {
+      const rotation = i * angleStep;
+      img.style.transform = `rotateY(${rotation}deg) translateZ(400px)`;
+    });
 
-      function render() {
-        images.forEach((img, i) => {
-          const offset = i - current;
-          const abs = Math.abs(offset);
-          const scale = Math.max(0.35, cfg.centerScale - abs * cfg.sideScaleStep);
-          const translateX = offset * cfg.gap;
-          const translateZ = -Math.min(300, abs * cfg.zStep);
-          const rotateY = -offset * cfg.rotateStep;
+    // Boutons
+    const btnPrev = container.querySelector('.cf-prev');
+    const btnNext = container.querySelector('.cf-next');
 
-          img.style.transform = `
-            translate(-50%, -50%)
-            translateX(${translateX}px)
-            translateZ(${translateZ}px)
-            scale(${scale})
-            rotateY(${rotateY}deg)
-          `;
-          img.style.zIndex = 10000 - abs;
-          img.style.opacity = (abs > cfg.maxVisible ? '0' : '1');
-          img.style.pointerEvents = (abs > cfg.maxVisible ? 'none' : 'auto');
-        });
+    btnNext.addEventListener('click', () => {
+      angle -= angleStep;
+      coverflow.style.transform = `rotateY(${angle}deg)`;
+    });
+
+    btnPrev.addEventListener('click', () => {
+      angle += angleStep;
+      coverflow.style.transform = `rotateY(${angle}deg)`;
+    });
+
+    // Swipe tactile pour mobile
+    let startX = 0;
+    coverflow.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    coverflow.addEventListener('touchend', e => {
+      const endX = e.changedTouches[0].clientX;
+      if (endX < startX - 50) {
+        angle -= angleStep;
+      } else if (endX > startX + 50) {
+        angle += angleStep;
       }
-
-      // initial render
-      render();
-
-      // boutons
-      const prevBtn = container.querySelector('.cf-prev');
-      const nextBtn = container.querySelector('.cf-next');
-      if (prevBtn) prevBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.max(0, current - 1); render(); });
-      if (nextBtn) nextBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.min(images.length - 1, current + 1); render(); });
-
-      // clic image -> centrer
-      images.forEach((img, idx) => img.addEventListener('click', (e) => { e.stopPropagation(); current = idx; render(); }));
-
-      // swipe tactile
-      let startX = null;
-      container.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
-      container.addEventListener('touchend', e => {
-        if (startX === null) return;
-        const endX = e.changedTouches[0].clientX;
-        if (endX < startX - 30) current = Math.min(images.length - 1, current + 1);
-        if (endX > startX + 30) current = Math.max(0, current - 1);
-        startX = null;
-        render();
-      });
-
-      // clavier
-      container.tabIndex = 0;
-      container.addEventListener('keydown', e => {
-        if (e.key === 'ArrowLeft') { current = Math.max(0, current - 1); render(); }
-        if (e.key === 'ArrowRight') { current = Math.min(images.length - 1, current + 1); render(); }
-      });
-
-      // resize -> redraw (garde centré)
-      window.addEventListener('resize', () => render());
+      coverflow.style.transform = `rotateY(${angle}deg)`;
     });
   });
-  </script>
+</script>
+
 
 </body>
 </html>
+
+
+
+ESSAIE DE TROUVER LE PROBLEME, LE RENDU QUE NOUS VOULONS DES PHOTOS N'est PAS BON, Elles ne défilent pas
 
