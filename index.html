@@ -327,72 +327,66 @@ aside.card:hover {
 
     
 
- .realisations-bloc {
-  margin-bottom: 40px;
-}
-.realisations-bloc h3 {
-  margin: 12px 0;
-}
-/* Coverflow container */
-.coverflow-container {
-  position: relative;
-  perspective: 1200px;
-  width: 100%;
-  max-width: 1000px;
-  height: 320px;
-  margin: 28px auto;
-  overflow: hidden;
-}
 
-/* Zone où les images sont positionnées (images en absolute) */
-.coverflow {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+    /* REALISATIONS - Coverflow */
+    .realisations-bloc{ margin-bottom:40px; }
+    .realisations-bloc h3{ margin:12px 0; }
 
-/* Images */
-.coverflow img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 240px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 12px;
-  transform: translate(-50%, -50%);
-  transition: transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.35s;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  cursor: pointer;
-  will-change: transform, opacity;
-}
+    .coverflow-container {
+      position: relative;
+      perspective: 1200px;
+      width: 100%;
+      max-width: 1000px;
+      height: 320px;
+      margin: 16px auto 36px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent);
+      border-radius: 8px;
+      padding: 8px;
+    }
 
-/* Boutons flèches (évite collision avec .nav header) */
-.cf-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-  border: 0;
-  background: rgba(0,0,0,0.45);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  cursor: pointer;
-  z-index: 1200;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
-.cf-btn:hover { background: rgba(0,0,0,0.6); }
+    .coverflow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
 
-.cf-prev { left: 12px; }
-.cf-next { right: 12px; }
+    .coverflow img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 240px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      transform: translate(-50%,-50%);
+      transition: transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.35s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      cursor: pointer;
+      will-change: transform, opacity;
+    }
 
-/* Masquer boutons sur très petit écran si tu veux (optionnel) */
-/* @media (max-width: 520px) { .cf-btn { display: none; } } */
+    .cf-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      cursor: pointer;
+      z-index: 1200;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+    .cf-prev { left: 12px; }
+    .cf-next { right: 12px; }
+    .cf-btn:hover{ background: rgba(0,0,0,0.6); }
 
 
 
@@ -556,7 +550,7 @@ aside.card:hover {
   <p class="muted">Réalisation artisanale sur mesure.</p>
     
   <!-- Bloc 1 : Charpente traditionnelle -->
-  <div class="realisations-bloc">
+                  <div class="realisations-bloc">
     <h3>Charpente traditionnelle</h3>
     <div class="coverflow-container">
       <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
@@ -577,7 +571,7 @@ aside.card:hover {
   </div>
 
   <!-- Bloc 2 : Ossature & Bardage -->
-  <div class="realisations-bloc">
+                  <div class="realisations-bloc">
     <h3>Ossature & Bardage</h3>
     <div class="coverflow-container">
       <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
@@ -592,7 +586,7 @@ aside.card:hover {
   </div>
 
   <!-- Bloc 3 : Aménagements -->
-  <div class="realisations-bloc">
+                    <div class="realisations-bloc">
     <h3>Aménagements ext./int.</h3>
     <div class="coverflow-container">
       <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
@@ -663,46 +657,79 @@ aside.card:hover {
 
 
     
-<script>
 document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll('.coverflow-container').forEach(container => {
-    const coverflow = container.querySelector('.coverflow');
-    const imgs = coverflow.querySelectorAll('img');
-    const total = imgs.length;
-    let angle = 0;
-    const angleStep = 360 / total;
+    document.querySelectorAll('.coverflow-container').forEach(container => {
+      const coverflow = container.querySelector('.coverflow');
+      const images = Array.from(coverflow.querySelectorAll('img'));
+      if (!images.length) return;
 
-    // Position initiale des images
-    imgs.forEach((img, i) => {
-      const rotation = i * angleStep;
-      img.style.transform = `rotateY(${rotation}deg) translateZ(400px)`;
-    });
+      // configuration (ajuste si tu veux effet plus/moins prononcé)
+      const cfg = {
+        gap: 170,            // espace horizontal entre images
+        centerScale: 2.6,    // échelle image centrale
+        sideScaleStep: 0.6,  // réduction par pas depuis le centre
+        maxVisible: 4,       // nombre d'images visibles de chaque côté
+        zStep: 90,           // profondeur par pas
+        rotateStep: 16       // rotation Y par pas
+      };
 
-    // Boutons
-    const btnPrev = container.querySelector('.cf-prev');
-    const btnNext = container.querySelector('.cf-next');
+      let current = Math.floor(images.length / 2);
 
-    btnNext.addEventListener('click', () => {
-      angle -= angleStep;
-      coverflow.style.transform = `rotateY(${angle}deg)`;
-    });
+      function render() {
+        images.forEach((img, i) => {
+          const offset = i - current;
+          const abs = Math.abs(offset);
+          const scale = Math.max(0.35, cfg.centerScale - abs * cfg.sideScaleStep);
+          const translateX = offset * cfg.gap;
+          const translateZ = -Math.min(300, abs * cfg.zStep);
+          const rotateY = -offset * cfg.rotateStep;
 
-    btnPrev.addEventListener('click', () => {
-      angle += angleStep;
-      coverflow.style.transform = `rotateY(${angle}deg)`;
-    });
-
-    // Swipe tactile pour mobile
-    let startX = 0;
-    coverflow.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-    coverflow.addEventListener('touchend', e => {
-      const endX = e.changedTouches[0].clientX;
-      if (endX < startX - 50) {
-        angle -= angleStep;
-      } else if (endX > startX + 50) {
-        angle += angleStep;
+          img.style.transform = `
+            translate(-50%, -50%)
+            translateX(${translateX}px)
+            translateZ(${translateZ}px)
+            scale(${scale})
+            rotateY(${rotateY}deg)
+          `;
+          img.style.zIndex = 10000 - abs;
+          img.style.opacity = (abs > cfg.maxVisible ? '0' : '1');
+          img.style.pointerEvents = (abs > cfg.maxVisible ? 'none' : 'auto');
+        });
       }
-      coverflow.style.transform = `rotateY(${angle}deg)`;
+
+      // initial render
+      render();
+
+      // boutons
+      const prevBtn = container.querySelector('.cf-prev');
+      const nextBtn = container.querySelector('.cf-next');
+      if (prevBtn) prevBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.max(0, current - 1); render(); });
+      if (nextBtn) nextBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.min(images.length - 1, current + 1); render(); });
+
+      // clic image -> centrer
+      images.forEach((img, idx) => img.addEventListener('click', (e) => { e.stopPropagation(); current = idx; render(); }));
+
+      // swipe tactile
+      let startX = null;
+      container.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+      container.addEventListener('touchend', e => {
+        if (startX === null) return;
+        const endX = e.changedTouches[0].clientX;
+        if (endX < startX - 30) current = Math.min(images.length - 1, current + 1);
+        if (endX > startX + 30) current = Math.max(0, current - 1);
+        startX = null;
+        render();
+      });
+
+      // clavier
+      container.tabIndex = 0;
+      container.addEventListener('keydown', e => {
+        if (e.key === 'ArrowLeft') { current = Math.max(0, current - 1); render(); }
+        if (e.key === 'ArrowRight') { current = Math.min(images.length - 1, current + 1); render(); }
+      });
+
+      // resize -> redraw (garde centré)
+      window.addEventListener('resize', () => render());
     });
   });
 </script>
@@ -712,6 +739,4 @@ document.addEventListener("DOMContentLoaded", () => {
 </html>
 
 
-
-ESSAIE DE TROUVER LE PROBLEME, LE RENDU QUE NOUS VOULONS DES PHOTOS N'est PAS BON, Elles ne défilent pas
 
