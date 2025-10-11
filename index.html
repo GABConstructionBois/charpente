@@ -416,6 +416,35 @@ aside.card:hover {
     .small{font-size:0.9rem}
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(59,139,106,0.12);color:var(--green);font-weight:700}
 
+
+    
+.cf-caption {
+  text-align: center;
+  font-size: 0.97rem;
+  color: #6b6b6b;
+  margin-top: 8px;
+  min-height: 1.4em;
+}
+.coverflow .cf-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  height: 190px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+@media (max-width: 900px) {
+  .coverflow .cf-item {
+    width: 90vw;
+    height: 33vw;
+    min-height: 140px;
+    min-width: 160px;
+  }
+}
   </style>
 </head>
 <body>
@@ -549,59 +578,89 @@ aside.card:hover {
   <h2>Réalisations</h2>
   <p class="muted">Réalisation artisanale sur mesure.</p>
     
+ -- ... début du fichier inchangé ... -->
+
+ <section id="realisations">
+  <h2>Réalisations</h2>
+  <p class="muted">Réalisation artisanale sur mesure.</p>
+    
   <!-- Bloc 1 : Charpente traditionnelle -->
-                  <div class="realisations-bloc">
+  <div class="realisations-bloc">
     <h3>Charpente traditionnelle</h3>
     <div class="coverflow-container">
       <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
       <div class="coverflow">
-        <img src="images/maquette GF.jpg" alt="Charpente traditionnelle">
-        <img src="images/charpe ferme biase gf.jpg" alt="Charpente traditionnelle">
-        <img src="images/Charpente-mqt.jpg" alt="Charpente traditionnelle">
-        <img src="images/abris a bois.jpg" alt="Charpente traditionnelle">
-        <img src="images/charpente mélèze.jpg" alt="Charpente traditionnelle">
-        <img src="images/charpente entree.jpg" alt="Charpente traditionnelle">
-        <img src="images/charpente ossature.jpg" alt="Charpente traditionnelle">
-        <img src="images/charpente.jpg" alt="Charpente traditionnelle">
-        <img src="images/fermes.jpg" alt="Charpente traditionnelle">
-        <img src="images/trait de jupiter.jpg" alt="Charpente traditionnelle">
+        <div class="cf-item">
+          <img src="images/maquette GF.jpg" alt="Charpente traditionnelle">
+          <div class="cf-caption">Maquette d'une ferme en bois, assemblage traditionnel.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/charpe ferme biase gf.jpg" alt="Charpente traditionnelle">
+          <div class="cf-caption">Fermes biaisées, adaptation sur-mesure.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/Charpente-mqt.jpg" alt="Charpente traditionnelle">
+          <div class="cf-caption">Charpente montée en atelier.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/abris a bois.jpg" alt="Charpente traditionnelle">
+          <div class="cf-caption">Abris à bois en mélèze local.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/charpente mélèze.jpg" alt="Charpente traditionnelle">
+          <div class="cf-caption">Structure en mélèze, résistance et durabilité.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/charpente entree.jpg" alt="Charpente traditionnelle">
+          <div class="cf-caption">Entrée charpentée, esthétique bois.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/charpente ossature.jpg" alt="Charpente traditionnelle">
+          <div class="cf-caption">Ossature traditionnelle pour toiture.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/charpente.jpg" alt="Charpente traditionnelle">
+          <div class="cf-caption">Assemblage sur chantier.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/fermes.jpg" alt="Charpente traditionnelle">
+          <div class="cf-caption">Fermes principales porteuses.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/trait de jupiter.jpg" alt="Charpente traditionnelle">
+          <div class="cf-caption">Trait de Jupiter, assemblage traditionnel.</div>
+        </div>
       </div>
       <button class="cf-btn cf-next" aria-label="Suivant">›</button>
     </div>
   </div>
 
   <!-- Bloc 2 : Ossature & Bardage -->
-                  <div class="realisations-bloc">
+  <div class="realisations-bloc">
     <h3>Ossature & Bardage</h3>
     <div class="coverflow-container">
       <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
       <div class="coverflow">
-        <img src="images/bardage exterieur.jpg" alt="Ossature bois">
-        <img src="images/bois projet.jpg" alt="Ossature bois">
-        <img src="images/ensemble.jpg" alt="Ossature bois">
-        <img src="images/cuisine exterieur.jpg" alt="Ossature bois">
-      </div>
-      <button class="cf-btn cf-next" aria-label="Suivant">›</button>
-    </div>
-  </div>
-
-  <!-- Bloc 3 : Aménagements -->
-                    <div class="realisations-bloc">
-    <h3>Aménagements ext./int.</h3>
-    <div class="coverflow-container">
-      <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
-      <div class="coverflow">
-        <img src="images/cuisine exterieur.jpg" alt="Aménagement bois">
-        <img src="images/abri-bois.jpg" alt="Aménagement bois">
-        <img src="images/terrasse.jpg" alt="Aménagement bois">
-      </div>
-      <button class="cf-btn cf-next" aria-label="Suivant">›</button>
-    </div>
-  </div>
-
-</section>
+        <div class="cf-item">
+          <img src="images/bardage exterieur.jpg" alt="Ossature bois">
+          <div class="cf-caption">Bardage extérieur, finition naturelle.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/bois projet.jpg" alt="Ossature bois">
+          <div class="cf-caption">Projet sur mesure en bois massif.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/ensemble.jpg" alt="Ossature bois">
+          <div class="cf-caption">Ensemble ossature et bardage.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/cuisine exterieur.jpg" alt="Ossature bois">
+          <div class="cf-caption">Cuisine extérieure, bardage bois.</div>
+</script>
 
 
+
+          
     <section id="contact">
       <h2>Contact & Devis</h2>
       <p class="muted">Remplis le formulaire ci‑dessous ou contacte‑nous directement.</p>
@@ -656,26 +715,26 @@ function handleSubmit(e){
   document.getElementById('formMsg').textContent = "Votre client mail devrait s'ouvrir. Si rien ne se passe, utilisez l'adresse indiquée.";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+   
+  document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.coverflow-container').forEach(container => {
     const coverflow = container.querySelector('.coverflow');
-    const images = Array.from(coverflow.querySelectorAll('img'));
-    if (!images.length) return;
+    const items = Array.from(coverflow.querySelectorAll('.cf-item'));
+    if (!items.length) return;
 
- // configuration (ajuste si tu veux effet plus/moins prononcé)
     const cfg = {
-      gap: 170,              // espace horizontal entre images
-      centerScale: 2.6,      // échelle image centrale
-      sideScaleStep: 0.6,    // réduction par pas depuis le centre
-      maxVisible: 4,         // nombre d'images visibles de chaque côté
-      zStep: 90,             // profondeur par pas
-      rotateStep: 16         // rotation Y par pas
+      gap: 170,
+      centerScale: 2.6,
+      sideScaleStep: 0.6,
+      maxVisible: 4,
+      zStep: 90,
+      rotateStep: 16
     };
 
-    let current = Math.floor(images.length / 2);
+    let current = Math.floor(items.length / 2);
 
     function render() {
-      images.forEach((img, i) => {
+      items.forEach((item, i) => {
         const offset = i - current;
         const abs = Math.abs(offset);
         const scale = Math.max(0.35, cfg.centerScale - abs * cfg.sideScaleStep);
@@ -683,16 +742,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const translateZ = -Math.min(300, abs * cfg.zStep);
         const rotateY = -offset * cfg.rotateStep;
 
-        img.style.transform = `
+        item.style.transform = `
           translate(-50%, -50%)
           translateX(${translateX}px)
           translateZ(${translateZ}px)
           scale(${scale})
           rotateY(${rotateY}deg)
         `;
-        img.style.zIndex = 10000 - abs;
-        img.style.opacity = (abs > cfg.maxVisible ? '0' : '1');
-        img.style.pointerEvents = (abs > cfg.maxVisible ? 'none' : 'auto');
+        item.style.zIndex = 10000 - abs;
+        item.style.opacity = (abs > cfg.maxVisible ? '0' : '1');
+        item.style.pointerEvents = (abs > cfg.maxVisible ? 'none' : 'auto');
       });
     }
 
@@ -701,16 +760,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = container.querySelector('.cf-prev');
     const nextBtn = container.querySelector('.cf-next');
     if (prevBtn) prevBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.max(0, current - 1); render(); });
-    if (nextBtn) nextBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.min(images.length - 1, current + 1); render(); });
+    if (nextBtn) nextBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.min(items.length - 1, current + 1); render(); });
 
-    images.forEach((img, idx) => img.addEventListener('click', e => { e.stopPropagation(); current = idx; render(); }));
+    items.forEach((item, idx) => item.addEventListener('click', e => { e.stopPropagation(); current = idx; render(); }));
 
     let startX = null;
     container.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
     container.addEventListener('touchend', e => {
       if (startX === null) return;
       const endX = e.changedTouches[0].clientX;
-      if (endX < startX - 30) current = Math.min(images.length - 1, current + 1);
+      if (endX < startX - 30) current = Math.min(items.length - 1, current + 1);
       if (endX > startX + 30) current = Math.max(0, current - 1);
       startX = null;
       render();
@@ -719,7 +778,7 @@ document.addEventListener("DOMContentLoaded", () => {
     container.tabIndex = 0;
     container.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft') { current = Math.max(0, current - 1); render(); }
-      if (e.key === 'ArrowRight') { current = Math.min(images.length - 1, current + 1); render(); }
+      if (e.key === 'ArrowRight') { current = Math.min(items.length - 1, current + 1); render(); }
     });
 
     window.addEventListener('resize', render);
