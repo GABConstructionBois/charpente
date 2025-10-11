@@ -1,4 +1,4 @@
-<script>document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.coverflow-container').forEach(container => {
     const coverflow = container.querySelector('.coverflow');
     const images = Array.from(coverflow.querySelectorAll('.cf-item'));
@@ -67,4 +67,4 @@
     window.addEventListener('resize', render);
   });
 });
-</script>
+
