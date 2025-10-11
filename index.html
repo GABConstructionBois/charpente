@@ -340,42 +340,43 @@ aside.card:hover {
   color: #A66F3A;
 }
 
+/* Container scrollable horizontal */
 .coverflow-container {
-  overflow-x: auto;
-  white-space: nowrap;
-  padding-bottom: 24px;
-  margin-bottom: 48px;
-  background: rgba(237,227,216,0.10);
-  border-radius: 10px;
+  overflow-x: auto;       /* scroll horizontal si nécessaire */
+  white-space: nowrap;    /* empêche le retour à la ligne */
+  padding-bottom: 16px;
+  margin-bottom: 32px;
 }
-.coverflow {
-  white-space: nowrap;
-}
+
+/* Chaque item de la coverflow */
 .coverflow .cf-item {
-  position: relative; /* ou juste enlever "position: absolute" */
-  top: auto;
-  left: auto;
-  transform: none;
-  display: inline-block; /* permet de les aligner horizontalement si coverflow-container overflow-x:auto */
-  width: 240px; /* tu peux adapter */
-  height: auto;
-  margin-right: 18px; /* espace entre images */
-  text-align: center;
+  display: inline-block;  /* alignement horizontal */
+  vertical-align: top;
+  width: 240px;           /* largeur de chaque image */
+  margin-right: 18px;     /* espace entre images */
+  text-align: center;     /* légende centrée */
+  position: relative;     /* plus besoin d'absolute */
+  height: auto;           /* hauteur automatique */
 }
+
+/* Images */
 .coverflow img {
   width: 100%;
-  max-width: 240px;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 3px 14px rgba(0,0,0,0.13);
+  display: block;
 }
+
+/* Légendes */
 .cf-caption {
-  font-size: 1rem;  /*taille com.*/
+  font-size: 1rem;
   color: #6b6b6b;
-  margin-top: 10px; /*espace avec l'image*/
+  margin-top: 8px;
+  text-align: center;  /* centrer texte */
   padding: 4px 0;
-  text-align: center;
 }
+
 @media (max-width: 700px) {
   .coverflow .cf-item {
     width: 83vw;
