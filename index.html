@@ -352,10 +352,14 @@ aside.card:hover {
   white-space: nowrap;
 }
 .coverflow .cf-item {
-  display: inline-block;
-  vertical-align: top;
-  width: 240px;
-  margin: 0 18px 0 0;
+  position: relative; /* ou juste enlever "position: absolute" */
+  top: auto;
+  left: auto;
+  transform: none;
+  display: inline-block; /* permet de les aligner horizontalement si coverflow-container overflow-x:auto */
+  width: 240px; /* tu peux adapter */
+  height: auto;
+  margin-right: 18px; /* espace entre images */
   text-align: center;
 }
 .coverflow img {
@@ -366,10 +370,11 @@ aside.card:hover {
   box-shadow: 0 3px 14px rgba(0,0,0,0.13);
 }
 .cf-caption {
-  font-size: 1rem;
+  font-size: 1rem;  /*taille com.*/
   color: #6b6b6b;
-  margin-top: 10px;
+  margin-top: 10px; /*espace avec l'image*/
   padding: 4px 0;
+  text-align: center;
 }
 @media (max-width: 700px) {
   .coverflow .cf-item {
