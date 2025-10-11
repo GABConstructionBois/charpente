@@ -1,1 +1,70 @@
+<script>document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.coverflow-container').forEach(container => {
+    const coverflow = container.querySelector('.coverflow');
+    const images = Array.from(coverflow.querySelectorAll('.cf-item'));
+    if (!images.length) return;
 
+ // configuration (ajuste si tu veux effet plus/moins prononcé)
+    const cfg = {
+      gap: 170,              // espace horizontal entre images
+      centerScale: 2.6,      // échelle image centrale
+      sideScaleStep: 0.6,    // réduction par pas depuis le centre
+      maxVisible: 4,         // nombre d'images visibles de chaque côté
+      zStep: 90,             // profondeur par pas
+      rotateStep: 16         // rotation Y par pas
+    };
+
+    let current = Math.floor(images.length / 2);
+
+    function render() {
+      images.forEach((img, i) => {
+        const offset = i - current;
+        const abs = Math.abs(offset);
+        const scale = Math.max(0.35, cfg.centerScale - abs * cfg.sideScaleStep);
+        const translateX = offset * cfg.gap;
+        const translateZ = -Math.min(300, abs * cfg.zStep);
+        const rotateY = -offset * cfg.rotateStep;
+
+        img.style.transform = `
+          translate(-50%, -50%)
+          translateX(${translateX}px)
+          translateZ(${translateZ}px)
+          scale(${scale})
+          rotateY(${rotateY}deg)
+        `;
+        img.style.zIndex = 10000 - abs;
+        img.style.opacity = (abs > cfg.maxVisible ? '0' : '1');
+        img.style.pointerEvents = (abs > cfg.maxVisible ? 'none' : 'auto');
+      });
+    }
+
+    render();
+
+    const prevBtn = container.querySelector('.cf-prev');
+    const nextBtn = container.querySelector('.cf-next');
+    if (prevBtn) prevBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.max(0, current - 1); render(); });
+    if (nextBtn) nextBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.min(images.length - 1, current + 1); render(); });
+
+    images.forEach((img, idx) => img.addEventListener('click', e => { e.stopPropagation(); current = idx; render(); }));
+
+    let startX = null;
+    container.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    container.addEventListener('touchend', e => {
+      if (startX === null) return;
+      const endX = e.changedTouches[0].clientX;
+      if (endX < startX - 30) current = Math.min(images.length - 1, current + 1);
+      if (endX > startX + 30) current = Math.max(0, current - 1);
+      startX = null;
+      render();
+    });
+
+    container.tabIndex = 0;
+    container.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') { current = Math.max(0, current - 1); render(); }
+      if (e.key === 'ArrowRight') { current = Math.min(images.length - 1, current + 1); render(); }
+    });
+
+    window.addEventListener('resize', render);
+  });
+});
+</script>
