@@ -328,69 +328,66 @@ aside.card:hover {
     
 
 
-    /* --- SECTION REALISATIONS --- */
+    /* REALISATIONS - Coverflow */
+    .realisations-bloc{ margin-bottom:40px; }
+    .realisations-bloc h3{ margin:12px 0; }
 
-    
- .realisations-bloc {
-  margin-bottom: 70px;
-}
-.realisations-bloc h3 {
-  margin: 24px 0 18px 0;
-  font-size: 1.4rem;
-  color: #A66F3A;
-}
+    .coverflow-container {
+      position: relative;
+      perspective: 1200px;
+      width: 100%;
+      max-width: 1000px;
+      height: 320px;
+      margin: 16px auto 36px;
+      overflow: visible;
+      background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent);
+      border-radius: 8px;
+      padding: 8px;
+    }
 
-/* Container scrollable horizontal */
-.coverflow-container {
-  overflow-x: auto;       /* scroll horizontal si nécessaire */
-  white-space: nowrap;    /* empêche le retour à la ligne */
-  padding-bottom: 16px;
-  margin-bottom: 32px;
-}
+    .coverflow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
 
-/* Chaque item de la coverflow */
-.coverflow .cf-item {
-  display: inline-block;  /* alignement horizontal */
-  vertical-align: top;
-  width: 240px;           /* largeur de chaque image */
-  margin-right: 18px;     /* espace entre images */
-  text-align: center;     /* légende centrée */
-  position: relative;     /* plus besoin d'absolute */
-  height: auto;           /* hauteur automatique */
-}
+    .coverflow img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 240px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 12px;
+      transform: translate(-50%,-50%);
+      transition: transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.35s;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      cursor: pointer;
+      will-change: transform, opacity;
+    }
 
-/* Images */
-.coverflow img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
-  box-shadow: 0 3px 14px rgba(0,0,0,0.13);
-  display: block;
-}
+    .cf-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 0;
+      background: rgba(0,0,0,0.45);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      cursor: pointer;
+      z-index: 1200;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    }
+    .cf-prev { left: 12px; }
+    .cf-next { right: 12px; }
+    .cf-btn:hover{ background: rgba(0,0,0,0.6); }
 
-/* Légendes */
-.cf-caption {
-  font-size: 1rem;
-  color: #6b6b6b;
-  margin-top: 8px;
-  text-align: center;  /* centrer texte */
-  padding: 4px 0;
-}
-
-@media (max-width: 700px) {
-  .coverflow .cf-item {
-    width: 83vw;
-    max-width: 340px;
-    margin-right: 10px;
-  }
-  .coverflow img {
-    max-width: 95vw;
-  }
-  .cf-caption {
-    font-size: 0.97rem;
-    padding: 2px 0;
-  }
-}
 
 
 
@@ -421,11 +418,6 @@ aside.card:hover {
 
   </style>
 </head>
-
-
-
-
-  
 <body>
   <header>
     <div class="nav">
@@ -561,64 +553,35 @@ aside.card:hover {
                   <div class="realisations-bloc">
     <h3>Charpente traditionnelle</h3>
     <div class="coverflow-container">
-      
+      <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
       <div class="coverflow">
-        
-                <div class="cf-item">
-         <img src="images/fermes.jpg" alt="Charpente traditionnelle">
-        <div class="cf-caption">Hall d'entréer, 3 fermes mélèze, assemblages traditionnels</div>
-                </div> 
-          <div class="cf-item">
-       <img src="images/charpente.jpg" alt="Charpente traditionnelle">
-        <div class="cf-caption">Ferme mélèze levée</div>
-                </div>
-                <div class="cf-item">
-       <img src="images/charpente mélèze.jpg" alt="Charpente traditionnelle">
-         <div class="cf-caption">Hall d'entréer, 3 fermes mélèze, assemblages traditionnels</div>
-                </div> 
-                <div class="cf-item">
-        <img src="images/charpente entree.jpg" alt="Charpente traditionnelle">
-        <div class="cf-caption">Charpente traditionnelle avant isolation et couverture</div>
-                </div>
-          <div class="cf-item">
-       <img src="images/charpente ossature.jpg" alt="Charpente traditionnelle">
-        <div class="cf-caption"> Charpente traditionnelle avant isolation et couverture </div>
-                </div>
-              <div class="cf-item">
         <img src="images/maquette GF.jpg" alt="Charpente traditionnelle">
-        <div class="cf-caption">Coordination Maquette grand format, assemblage traditionnel, chez les Compagnons du devoir Gap</div>
-                </div> 
-              <div class="cf-item">
         <img src="images/charpe ferme biase gf.jpg" alt="Charpente traditionnelle">
-        <div class="cf-caption">Coordination Maquette grand format, assemblage traditionnel, chez les Compagnons du devoir Gap</div>
-                </div> 
-             <div class="cf-item">
+        <img src="images/Charpente-mqt.jpg" alt="Charpente traditionnelle">
+        <img src="images/abris a bois.jpg" alt="Charpente traditionnelle">
+        <img src="images/charpente mélèze.jpg" alt="Charpente traditionnelle">
+        <img src="images/charpente entree.jpg" alt="Charpente traditionnelle">
+        <img src="images/charpente ossature.jpg" alt="Charpente traditionnelle">
+        <img src="images/charpente.jpg" alt="Charpente traditionnelle">
+        <img src="images/fermes.jpg" alt="Charpente traditionnelle">
         <img src="images/trait de jupiter.jpg" alt="Charpente traditionnelle">
-            <div class="cf-caption">Trait de Jupiter, Assemblage traditionnel</div>
-        </div>
       </div>
+      <button class="cf-btn cf-next" aria-label="Suivant">›</button>
     </div>
+  </div>
 
   <!-- Bloc 2 : Ossature & Bardage -->
                   <div class="realisations-bloc">
     <h3>Ossature & Bardage</h3>
     <div class="coverflow-container">
-      
+      <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
       <div class="coverflow">
-  
-          <div class="cf-item">
-       <img src="images/bardage exterieur.jpg" alt="Ossature bois">
-        <div class="cf-caption"> Style clairevoie en douglas classe4 par imprégnation </div>
-                </div>
-           <div class="cf-item">
-       <img src="images/bois projet.jpg" alt="Ossature bois">
-        <div class="cf-caption">Ossature bois, bardage douglas naturel </div>
-                </div>
-           <div class="cf-item">
+        <img src="images/bardage exterieur.jpg" alt="Ossature bois">
+        <img src="images/bois projet.jpg" alt="Ossature bois">
         <img src="images/ensemble.jpg" alt="Ossature bois">
-        <div class="cf-caption"> Vue ensemble projet, Toilette ossature bois isolation laine de bois et cuisine </div>
-                </div>
+        <img src="images/cuisine exterieur.jpg" alt="Ossature bois">
       </div>
+      <button class="cf-btn cf-next" aria-label="Suivant">›</button>
     </div>
   </div>
 
@@ -626,26 +589,13 @@ aside.card:hover {
                     <div class="realisations-bloc">
     <h3>Aménagements ext./int.</h3>
     <div class="coverflow-container">
-
+      <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
       <div class="coverflow">
-        
-           <div class="cf-item">
         <img src="images/cuisine exterieur.jpg" alt="Aménagement bois">
-        <div class="cf-caption">Cuisine extérieure</div>
-                </div>
-        <div class="cf-item">
         <img src="images/abri-bois.jpg" alt="Aménagement bois">
-        <div class="cf-caption">   XXXXXXX   </div>
-                </div>
-        <div class="cf-item">
-       <img src="images/terrasse.jpg" alt="Aménagement bois">
-        <div class="cf-caption">   XXXXXXX   </div>
-                </div>
-        <div class="cf-item">
-        <img src="images/abris a bois.jpg" alt="Charpente traditionnelle">
-        <div class="cf-caption"> Abris a bois </div>
-                </div>
+        <img src="images/terrasse.jpg" alt="Aménagement bois">
       </div>
+      <button class="cf-btn cf-next" aria-label="Suivant">›</button>
     </div>
   </div>
 
@@ -706,10 +656,77 @@ function handleSubmit(e){
   document.getElementById('formMsg').textContent = "Votre client mail devrait s'ouvrir. Si rien ne se passe, utilisez l'adresse indiquée.";
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll('.coverflow-container').forEach(container => {
+    const coverflow = container.querySelector('.coverflow');
+    const images = Array.from(coverflow.querySelectorAll('img'));
+    if (!images.length) return;
 
+ // configuration (ajuste si tu veux effet plus/moins prononcé)
+    const cfg = {
+      gap: 170,              // espace horizontal entre images
+      centerScale: 2.6,      // échelle image centrale
+      sideScaleStep: 0.6,    // réduction par pas depuis le centre
+      maxVisible: 4,         // nombre d'images visibles de chaque côté
+      zStep: 90,             // profondeur par pas
+      rotateStep: 16         // rotation Y par pas
+    };
+
+    let current = Math.floor(images.length / 2);
+
+    function render() {
+      images.forEach((img, i) => {
+        const offset = i - current;
+        const abs = Math.abs(offset);
+        const scale = Math.max(0.35, cfg.centerScale - abs * cfg.sideScaleStep);
+        const translateX = offset * cfg.gap;
+        const translateZ = -Math.min(300, abs * cfg.zStep);
+        const rotateY = -offset * cfg.rotateStep;
+
+        img.style.transform = `
+          translate(-50%, -50%)
+          translateX(${translateX}px)
+          translateZ(${translateZ}px)
+          scale(${scale})
+          rotateY(${rotateY}deg)
+        `;
+        img.style.zIndex = 10000 - abs;
+        img.style.opacity = (abs > cfg.maxVisible ? '0' : '1');
+        img.style.pointerEvents = (abs > cfg.maxVisible ? 'none' : 'auto');
+      });
+    }
+
+    render();
+
+    const prevBtn = container.querySelector('.cf-prev');
+    const nextBtn = container.querySelector('.cf-next');
+    if (prevBtn) prevBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.max(0, current - 1); render(); });
+    if (nextBtn) nextBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.min(images.length - 1, current + 1); render(); });
+
+    images.forEach((img, idx) => img.addEventListener('click', e => { e.stopPropagation(); current = idx; render(); }));
+
+    let startX = null;
+    container.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    container.addEventListener('touchend', e => {
+      if (startX === null) return;
+      const endX = e.changedTouches[0].clientX;
+      if (endX < startX - 30) current = Math.min(images.length - 1, current + 1);
+      if (endX > startX + 30) current = Math.max(0, current - 1);
+      startX = null;
+      render();
+    });
+
+    container.tabIndex = 0;
+    container.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') { current = Math.max(0, current - 1); render(); }
+      if (e.key === 'ArrowRight') { current = Math.min(images.length - 1, current + 1); render(); }
+    });
+
+    window.addEventListener('resize', render);
+  });
+});
 </script>
 
 
 </body>
 </html>
-
