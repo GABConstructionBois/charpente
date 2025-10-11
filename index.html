@@ -92,12 +92,6 @@ nav a:hover {
   color: #A66F3A; /* bois au survol */
 }
 
-
-
-
-
-    
-
 /* HERO global */
 .hero {
   max-width: var(--container);
@@ -130,6 +124,23 @@ nav a:hover {
   }
 }
 
+/* Responsive slogan */
+.desktop-slogan { display:inline; }
+.mobile-slogan { display:none; }
+@media (max-width: 700px) {
+  .hero-title {
+    font-size: 1.5rem !important;
+    white-space: normal !important;
+    text-overflow: unset !important;
+  }
+  .desktop-slogan { display:none; }
+  .mobile-slogan { display:inline; }
+}
+@media (min-width: 701px) {
+  .desktop-slogan { display:inline; }
+  .mobile-slogan { display:none; }
+}
+
 /* Grille texte + carte */
 .hero-grid {
   display: grid;
@@ -158,7 +169,6 @@ nav a:hover {
   margin-bottom: 1em;
 }
 
-    
 /* Boutons centrés côte à côte */
 .cta {
   display: flex;
@@ -237,10 +247,6 @@ aside.card:hover {
   color: var(--green);
 }
 
-
-
-
-    
     /* SECTIONS */
     section{max-width:var(--container);margin:28px auto;padding:24px}
     .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -323,47 +329,60 @@ aside.card:hover {
   }
 }
 
-
-
-    
-
-
     /* REALISATIONS - Coverflow */
-    .realisations-bloc{ margin-bottom:40px; }
-    .realisations-bloc h3{ margin:12px 0; }
-
-    .coverflow-container {
-      position: relative;
-      perspective: 1200px;
-      width: 100%;
-      max-width: 1000px;
-      height: 320px;
-      margin: 16px auto 36px;
-      overflow: visible;
-      background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent);
-      border-radius: 8px;
-      padding: 8px;
+    .realisations-bloc {
+      margin-bottom: 48px;
+      padding: 24px 0 38px 0;
+      background: rgba(237,227,216,0.15);
+      border-radius: 14px;
+      box-shadow: 0 3px 18px rgba(100,100,100,0.08);
     }
-
+    .realisations-bloc h3 {
+      margin-bottom: 18px;
+      font-size: 1.4rem;
+      color: var(--wood);
+      letter-spacing: 0.5px;
+      text-align: center;
+    }
+    .coverflow-container {
+      min-height: 250px;
+      height: 370px;
+      padding-bottom: 32px;
+      margin-bottom: 14px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), transparent 90%);
+      border-radius: 10px;
+      box-shadow: 0 2px 16px rgba(59,139,106,0.07);
+      position: relative;
+    }
     .coverflow {
       position: relative;
       width: 100%;
       height: 100%;
+      min-height: 180px;
     }
-
-    .coverflow img {
+    .coverflow .cf-item {
       position: absolute;
-      top: 50%;
+      top: 30%;
       left: 50%;
-      width: 240px;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 12px;
-      transform: translate(-50%,-50%);
-      transition: transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.35s;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      cursor: pointer;
-      will-change: transform, opacity;
+      width: 260px;
+      height: 210px;
+      transform: translate(-50%, -30%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-bottom: 16px;
+    }
+    .cf-caption {
+      text-align: center;
+      font-size: 1rem;
+      color: #6b6b6b;
+      margin-top: 10px;
+      padding: 4px 10px;
+      min-height: 1.7em;
+      background: rgba(255,255,255,0.85);
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(59,139,106,0.07);
     }
 
     .cf-btn {
@@ -388,11 +407,30 @@ aside.card:hover {
     .cf-next { right: 12px; }
     .cf-btn:hover{ background: rgba(0,0,0,0.6); }
 
-
-
-
-
-    
+    @media (max-width: 900px) {
+      .coverflow-container {
+        height: 270px;
+        min-height: 180px;
+        padding-bottom: 40px;
+      }
+      .coverflow .cf-item {
+        width: 95vw;
+        min-width: 180px;
+        height: 180px;
+        top: 24%;
+        transform: translate(-50%, -24%);
+        padding-bottom: 10px;
+      }
+      .cf-caption {
+        font-size: 0.97rem;
+        margin-top: 8px;
+        padding: 4px 5px;
+      }
+      .realisations-bloc {
+        margin-bottom: 38px;
+        padding: 14px 0 28px 0;
+      }
+    }
 
     /* CONTACT FORM */
     .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
@@ -416,35 +454,6 @@ aside.card:hover {
     .small{font-size:0.9rem}
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(59,139,106,0.12);color:var(--green);font-weight:700}
 
-
-    
-.cf-caption {
-  text-align: center;
-  font-size: 0.97rem;
-  color: #6b6b6b;
-  margin-top: 8px;
-  min-height: 1.4em;
-}
-.coverflow .cf-item {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 240px;
-  height: 190px;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-@media (max-width: 900px) {
-  .coverflow .cf-item {
-    width: 90vw;
-    height: 33vw;
-    min-height: 140px;
-    min-width: 160px;
-  }
-}
   </style>
 </head>
 <body>
@@ -474,7 +483,10 @@ aside.card:hover {
  <section class="hero" id="accueil">
 
   <!-- Titre responsive sur une ligne -->
-  <h1 class="hero-title">Bâtir l’avenir, naturellement.</h1>
+  <h1 class="hero-title">
+    <span class="desktop-slogan">Bâtir l’avenir, naturellement.</span>
+    <span class="mobile-slogan">Bâtir l’avenir,<br>naturellement.</span>
+  </h1>
 
   <div class="hero-grid">
 
@@ -482,9 +494,9 @@ aside.card:hover {
       <div class="strap">Construction bois • Charpente • Éco-responsable</div>
       <div class="muted">
 <p>Chez GAB Construction Bois, chaque projet est une démarche de respect de notre planète et un engagement pour les générations à venir.</p>
-<p>Je réalise chaque ouvrage de charpente et de construction bois avec rigueur et passion, en intégrant les dernières normes de construction et une promesse écologique forte, tout en préservant les traditions artisanales transmises par les Compagnons du Devoir.</p>
+<p>Je réalise chaque ouvrage de charpente et de construction bois avec rigueur et passion, en intégrant les dernières normes de construction et une promesse écologique forte, tout en préservant l[...]
 <p>Choisir GAB Construction Bois, c’est concevoir un ouvrage à votre image, valoriser et améliorer votre cadre de vie, mais aussi créer un habitat confortable et sain sur le long terme.</p>
-<p>Mon expérience passée dans le soin, mes voyages et mon rapport à la nature m’ont appris qu’un lieu en équilibre contribue à l’équilibre de ceux qui l’habitent. C’est avec cette sensibilité que je conçois des espaces en bois, pensés pour être durables, fonctionnels, chaleureux et favoriser le bien-être de ceux qui y vivent.</p>
+<p>Mon expérience passée dans le soin, mes voyages et mon rapport à la nature m’ont appris qu’un lieu en équilibre contribue à l’équilibre de ceux qui l’habitent. C’est avec cette sens[...]
       </div>
 
       <div class="cta">
@@ -518,10 +530,10 @@ aside.card:hover {
   <p class="muted"> 
     
    <div class="services-intro">
-  <p>De l’extension de maison en ossature bois isolée <strong>naturellement</strong> à un carport élégant, en passant par des aménagements extérieurs et/ou intérieurs, je m’engage à concevoir la <strong>réalisation dont vous rêvez</strong>.</p>
-  <p>Je vous propose d’adapter la structure et l’<strong>esthétique</strong> à votre aménagement intérieur, tout en respectant les contraintes d’un permis de construire. Vous choisissez les <strong>essences de bois</strong> qui conviennent à votre projet, en alliant durabilité et beauté.</p>
-  <p>Pour des projets simples comme pour des conceptions plus techniques, j’ai été formé par les <strong>Compagnons du Devoir</strong> en tant que <strong>charpentier bois hautement qualifié</strong>. Après plusieurs années dans les <strong>Alpes</strong>, je reviens à mes racines, près de la <strong>Méditerranée</strong>, pour mettre mon savoir-faire au service de vos projets.</p>
-  <p>Je suis en train d’équiper un <strong>atelier complet</strong>, qui me permet de concevoir, tailler et lever <strong>votre projet sur mesure</strong>, pour que chaque réalisation soit fonctionnelle, solide et esthétiquement réussie.</p>
+  <p>De l’extension de maison en ossature bois isolée <strong>naturellement</strong> à un carport élégant, en passant par des aménagements extérieurs et/ou intérieurs, je m’engage à concev[...]
+  <p>Je vous propose d’adapter la structure et l’<strong>esthétique</strong> à votre aménagement intérieur, tout en respectant les contraintes d’un permis de construire. Vous choisissez les [...]
+  <p>Pour des projets simples comme pour des conceptions plus techniques, j’ai été formé par les <strong>Compagnons du Devoir</strong> en tant que <strong>charpentier bois hautement qualifié</st[...]
+  <p>Je suis en train d’équiper un <strong>atelier complet</strong>, qui me permet de concevoir, tailler et lever <strong>votre projet sur mesure</strong>, pour que chaque réalisation soit fonctio[...]
 </div>
 
     
@@ -529,7 +541,7 @@ aside.card:hover {
    
     <div class="service">
       <h3>Charpente traditionnelle</h3>
-  <p>La charpente structure votre maison : ossature de la toiture, elle peut être <strong>apparente ou cachée</strong>. Elle se compose de <strong>fermes</strong> — pièces principales porteuses — et de pièces secondaires comme les <strong>pannes et chevrons</strong>, qui supportent la couverture et l’isolation.</p>
+  <p>La charpente structure votre maison : ossature de la toiture, elle peut être <strong>apparente ou cachée</strong>. Elle se compose de <strong>fermes</strong> — pièces principales porteuses �[...]
   <p>Je réalise l’assemblage de manière traditionnelle, avec <strong>tenon-mortaise</strong>, sans vis, pour garantir <strong>solidité, durabilité et esthétique</strong>.</p>
   <p>Chaque charpente est conçue sur mesure pour s’intégrer parfaitement à votre projet.</p>
        <!-- bulle photo -->
@@ -541,7 +553,7 @@ aside.card:hover {
      <div class="service">
   <h3>Aménagement intérieur / extérieur</h3>
   <p>Je conçois et réalise des <strong>aménagements intérieurs et extérieurs sur mesure</strong>, alliant <strong>esthétique, durabilité et confort</strong>.</p>
-  <p>Parmi mes réalisations : <strong>pergolas, carports, poolhouses, terrasses et balcons</strong> pour vos espaces extérieurs, ainsi que <strong>escaliers, mezzanines, solivages, cloisons et habillages de murs</strong> pour l’intérieur. Je crée également des <strong>cuisines d’été, marquises et auvents</strong> pour valoriser votre espace de vie.</p>
+  <p>Parmi mes réalisations : <strong>pergolas, carports, poolhouses, terrasses et balcons</strong> pour vos espaces extérieurs, ainsi que <strong>escaliers, mezzanines, solivages, cloisons et habil[...]
  <p>Chaque projet est pensé pour être <strong>fonctionnel, durable et harmonieux</strong>, en optimisant vos espaces tout en mettant en valeur le bois et la qualité artisanale.</p>
  <!-- bulle photo -->
    <div class="bubble">
@@ -551,8 +563,8 @@ aside.card:hover {
 
     <div class="service">  
   <h3>Ossature bois - Extensions & Bardage</h3>
-  <p>Je conçois et réalise des projets sur mesure en bois, de <strong>l’ossature de votre maison</strong> à une <strong>extension élégante</strong> ou un <strong>bardage soigné</strong>. Chaque projet allie <strong>durabilité, esthétique et confort</strong>, avec des bois issus de forêts gérées durablement.</p>
-  <p>Mon savoir-faire me permet d’adapter la structure et le style à votre habitation, en respectant les normes et contraintes techniques. Chaque détail est travaillé pour que votre projet soit <strong>solide, fonctionnel et harmonieux</strong>.</p>
+  <p>Je conçois et réalise des projets sur mesure en bois, de <strong>l’ossature de votre maison</strong> à une <strong>extension élégante</strong> ou un <strong>bardage soigné</strong>. Chaqu[...]
+  <p>Mon savoir-faire me permet d’adapter la structure et le style à votre habitation, en respectant les normes et contraintes techniques. Chaque détail est travaillé pour que votre projet soit <[...]
       <div class="bubble">
       <img src="images/support bardage.jpg" alt="Ossature bois">
     </div>
@@ -561,7 +573,7 @@ aside.card:hover {
    <div class="service">
   <h3>Rénovation & isolation écologique</h3>
   <p>Je vous accompagne dans la rénovation de votre habitat avec des solutions <strong>écologiques, performantes et durables</strong>.</p>
-  <p>De la remise à neuf de structures anciennes à la modification de toiture, j’utilise <strong>la laine de bois</strong> pour <strong>isolation thermique, impact carbone négatif et qualité de l’air intérieur</strong>.</p>
+  <p>De la remise à neuf de structures anciennes à la modification de toiture, j’utilise <strong>la laine de bois</strong> pour <strong>isolation thermique, impact carbone négatif et qualité de [...]
   <p>Chaque projet est réalisé avec <strong>rigueur et précision</strong>, en intégrant l’<strong>étanchéité à l’air</strong> et les <strong>normes énergétiques actuelles</strong>.</p>
 <!-- bulle photo -->
    <div class="bubble">
@@ -573,12 +585,6 @@ aside.card:hover {
 </section>
 
 
-
- <section id="realisations">
-  <h2>Réalisations</h2>
-  <p class="muted">Réalisation artisanale sur mesure.</p>
-    
- -- ... début du fichier inchangé ... -->
 
  <section id="realisations">
   <h2>Réalisations</h2>
@@ -656,11 +662,37 @@ aside.card:hover {
         <div class="cf-item">
           <img src="images/cuisine exterieur.jpg" alt="Ossature bois">
           <div class="cf-caption">Cuisine extérieure, bardage bois.</div>
-</script>
+        </div>
+      </div>
+      <button class="cf-btn cf-next" aria-label="Suivant">›</button>
+    </div>
+  </div>
+
+  <!-- Bloc 3 : Aménagements -->
+  <div class="realisations-bloc">
+    <h3>Aménagements ext./int.</h3>
+    <div class="coverflow-container">
+      <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
+      <div class="coverflow">
+        <div class="cf-item">
+          <img src="images/cuisine exterieur.jpg" alt="Aménagement bois">
+          <div class="cf-caption">Cuisine extérieure sur mesure.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/abri-bois.jpg" alt="Aménagement bois">
+          <div class="cf-caption">Petit abri bois, fabrication artisanale.</div>
+        </div>
+        <div class="cf-item">
+          <img src="images/terrasse.jpg" alt="Aménagement bois">
+          <div class="cf-caption">Terrasse en bois, espace convivial.</div>
+        </div>
+      </div>
+      <button class="cf-btn cf-next" aria-label="Suivant">›</button>
+    </div>
+  </div>
+</section>
 
 
-
-          
     <section id="contact">
       <h2>Contact & Devis</h2>
       <p class="muted">Remplis le formulaire ci‑dessous ou contacte‑nous directement.</p>
@@ -715,20 +747,20 @@ function handleSubmit(e){
   document.getElementById('formMsg').textContent = "Votre client mail devrait s'ouvrir. Si rien ne se passe, utilisez l'adresse indiquée.";
 }
 
-   
-  document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.coverflow-container').forEach(container => {
     const coverflow = container.querySelector('.coverflow');
     const items = Array.from(coverflow.querySelectorAll('.cf-item'));
     if (!items.length) return;
 
+ // configuration (ajuste si tu veux effet plus/moins prononcé)
     const cfg = {
-      gap: 170,
-      centerScale: 2.6,
-      sideScaleStep: 0.6,
-      maxVisible: 4,
-      zStep: 90,
-      rotateStep: 16
+      gap: 170,              // espace horizontal entre images
+      centerScale: 2.6,      // échelle image centrale
+      sideScaleStep: 0.6,    // réduction par pas depuis le centre
+      maxVisible: 4,         // nombre d'images visibles de chaque côté
+      zStep: 90,             // profondeur par pas
+      rotateStep: 16         // rotation Y par pas
     };
 
     let current = Math.floor(items.length / 2);
@@ -743,7 +775,7 @@ function handleSubmit(e){
         const rotateY = -offset * cfg.rotateStep;
 
         item.style.transform = `
-          translate(-50%, -50%)
+          translate(-50%, -30%)
           translateX(${translateX}px)
           translateZ(${translateZ}px)
           scale(${scale})
