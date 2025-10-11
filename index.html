@@ -416,8 +416,31 @@ aside.card:hover {
     .small{font-size:0.9rem}
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(59,139,106,0.12);color:var(--green);font-weight:700}
 
+    .cf-caption {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #6b6b6b;
+  margin-top: 8px;
+}
+.coverflow .cf-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  height: 180px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
   </style>
 </head>
+
+
+
+
+  
 <body>
   <header>
     <div class="nav">
@@ -554,16 +577,36 @@ aside.card:hover {
     <h3>Charpente traditionnelle</h3>
     <div class="coverflow-container">
       <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
+      
       <div class="coverflow">
-        <img src="images/maquette GF.jpg" alt="Charpente traditionnelle">
-        <img src="images/charpe ferme biase gf.jpg" alt="Charpente traditionnelle">
-        <img src="images/Charpente-mqt.jpg" alt="Charpente traditionnelle">
-        <img src="images/abris a bois.jpg" alt="Charpente traditionnelle">
-        <img src="images/charpente mélèze.jpg" alt="Charpente traditionnelle">
+                <div class="cf-item">
+         <img src="images/fermes.jpg" alt="Charpente traditionnelle">
+        <div class="cf-caption">Hall d'entréer, 3 fermes mélèze, assemblages traditionnels</div>
+                </div> 
+                <div class="cf-item">
+       <img src="images/charpente mélèze.jpg" alt="Charpente traditionnelle">
+         <div class="cf-caption">Hall d'entréer, 3 fermes mélèze, assemblages traditionnels</div>
+                </div> 
+                <div class="cf-item">
         <img src="images/charpente entree.jpg" alt="Charpente traditionnelle">
-        <img src="images/charpente ossature.jpg" alt="Charpente traditionnelle">
-        <img src="images/charpente.jpg" alt="Charpente traditionnelle">
-        <img src="images/fermes.jpg" alt="Charpente traditionnelle">
+        <div class="cf-caption">Charpente traditionnelle avant isolation et couverture</div>
+                </div>
+          <div class="cf-item">
+       <img src="images/charpente ossature.jpg" alt="Charpente traditionnelle">
+        <div class="cf-caption"> Charpente traditionnelle avant isolation et couverture </div>
+                </div>
+              <div class="cf-item">
+        <img src="images/maquette GF.jpg" alt="Charpente traditionnelle">
+        <div class="cf-caption">Coordination Maquette grand format, assemblage traditionnel, chez les Compagnons du devoir Gap</div>
+                </div> 
+              <div class="cf-item">
+        <img src="images/charpe ferme biase gf.jpg" alt="Charpente traditionnelle">
+        <div class="cf-caption">Coordination Maquette grand format, assemblage traditionnel, chez les Compagnons du devoir Gap</div>
+                </div> 
+              <div class="cf-item">
+       <img src="images/charpente.jpg" alt="Charpente traditionnelle">
+        <div class="cf-caption">Trait de Jupiter, assemblage traditionnel</div>
+                </div>
         <img src="images/trait de jupiter.jpg" alt="Charpente traditionnelle">
       </div>
       <button class="cf-btn cf-next" aria-label="Suivant">›</button>
@@ -576,6 +619,10 @@ aside.card:hover {
     <div class="coverflow-container">
       <button class="cf-btn cf-prev" aria-label="Précédent">‹</button>
       <div class="coverflow">
+          <div class="cf-item">
+       
+        <div class="cf-caption">   XXXXXXX   </div>
+                </div>
         <img src="images/bardage exterieur.jpg" alt="Ossature bois">
         <img src="images/bois projet.jpg" alt="Ossature bois">
         <img src="images/ensemble.jpg" alt="Ossature bois">
@@ -594,6 +641,7 @@ aside.card:hover {
         <img src="images/cuisine exterieur.jpg" alt="Aménagement bois">
         <img src="images/abri-bois.jpg" alt="Aménagement bois">
         <img src="images/terrasse.jpg" alt="Aménagement bois">
+        <img src="images/abris a bois.jpg" alt="Charpente traditionnelle">
       </div>
       <button class="cf-btn cf-next" aria-label="Suivant">›</button>
     </div>
@@ -659,7 +707,7 @@ function handleSubmit(e){
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.coverflow-container').forEach(container => {
     const coverflow = container.querySelector('.coverflow');
-    const images = Array.from(coverflow.querySelectorAll('img'));
+    const images = Array.from(coverflow.querySelectorAll('.cf-item'));
     if (!images.length) return;
 
  // configuration (ajuste si tu veux effet plus/moins prononcé)
