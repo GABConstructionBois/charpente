@@ -727,7 +727,7 @@ textarea { min-height: 160px; }
 
   <div class="contact-grid">
     <!-- Formulaire -->
-    <form id="contactForm" onsubmit="handleSubmit(event)">
+    <form id="contactForm" onsubmit="handleSubmit(event)" action="mailto:g.ferrandiz06@compagnons-du-devoir.fr" method="post" enctype="text/plain">
       <input type="text" id="name" placeholder="Nom et prénom" required>
       <input type="tel" id="phone" placeholder="Téléphone" required>
       <input type="email" id="email" placeholder="Email" required>
@@ -738,6 +738,7 @@ textarea { min-height: 160px; }
         OU utilise : <a href="mailto:g.ferrandiz06@compagnons-du-devoir.fr">g.ferrandiz06@compagnons-du-devoir.fr</a>
       </div>
       <div id="formMsg" class="small muted" style="margin-top:8px"></div>
+      
     </form>
 
     <!-- Image à droite -->
