@@ -454,48 +454,89 @@ aside.card:hover {
 
     
 
-    /* Contact Grid personnalisé */
+  /* Contact Grid */
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr 300px; /* formulaire à gauche, photo à droite */
-  gap: 24px;
+  grid-template-columns: 1fr 400px; /* Formulaire + image */
+  gap: 30px;
   align-items: start;
+  margin-top: 20px;
 }
 
-/* Formulaire + infos pratiques */
-.form-block {
+form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+  background: #fff;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
 
-/* Photo à droite */
-.contact-photo img {
+input, textarea {
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.1);
+  font-size: 1rem;
+}
+
+textarea { min-height: 160px; }
+
+.contact-image img {
   width: 100%;
-  height: auto;
-  border-radius: 12px;
+  border-radius: 16px;
   object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* Infos pratiques */
+.contact-info {
+  margin-top: 20px;
 }
 
 /* Responsive */
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .contact-grid {
-    grid-template-columns: 1fr; /* tout en colonne */
+    grid-template-columns: 1fr; /* Tout en colonne */
   }
 
-  .contact-photo {
-    order: -1; /* photo au-dessus du formulaire si tu veux, sinon supprime cette ligne */
-    margin-bottom: 16px;
+  .contact-image {
+    margin-top: 20px;
+  }
+
+  .contact-info {
+    margin-top: 12px;
   }
 }
 
+/* Boutons déjà définis */
+.btn-primary {
+  background: var(--wood);
+  color: white;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
 
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+
+    
     /* small helpers */
     .small{font-size:0.9rem}
     .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(59,139,106,0.12);color:var(--green);font-weight:700}
 
   </style>
 </head>
+
+
+
+  
 <body>
   <header>
     <div class="nav">
@@ -680,40 +721,35 @@ aside.card:hover {
 </section>
 
    
-  <section id="contact">
+<section id="contact">
   <h2>Contact & Devis</h2>
   <p class="muted">Remplissez le formulaire ci‑dessous ou contactez moi directement.</p>
-  
-  <div class="contact-grid" style="margin-top:12px">
 
+  <div class="contact-grid">
     <!-- Formulaire -->
-    <div class="form-block">
-      <form id="contactForm" onsubmit="handleSubmit(event)">
-        <input type="text" id="name" placeholder="Nom et prénom" required>
-        <input type="tel" id="phone" placeholder="Téléphone" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="text" id="subject" placeholder="Objet (ex: Devis charpente)" required>
-        <textarea id="message" placeholder="Décris le projet (surface, localisation, contraintes...)" required></textarea>
-        <div style="display:flex;gap:10px;align-items:center">
-          <button class="btn btn-primary" type="submit">Envoyer la demande</button>
-          <div class="small muted">OU utilisez : <a href="g.ferrandiz06@compagnons-du-devoir.fr">g.ferrandiz@compagnons-du-devoir.fr</a></div>
-        </div>
-        <div id="formMsg" class="small muted" style="margin-top:8px"></div>
-      </form>
+    <form id="contactForm" onsubmit="handleSubmit(event)">
+      <input type="text" id="name" placeholder="Nom et prénom" required>
+      <input type="tel" id="phone" placeholder="Téléphone" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="text" id="subject" placeholder="Objet (ex: Devis charpente)" required>
+      <textarea id="message" placeholder="Décris le projet (surface, localisation, contraintes...)" required></textarea>
+      <button class="btn btn-primary" type="submit">Envoyer la demande</button>
+      <div class="small muted" style="margin-top:8px">
+        OU utilise : <a href="mailto:g.ferrandiz06@compagnons-du-devoir.fr">g.ferrandiz06@compagnons-du-devoir.fr</a>
+      </div>
+      <div id="formMsg" class="small muted" style="margin-top:8px"></div>
+    </form>
 
-      <!-- Infos pratiques sous le formulaire -->
+    <!-- Image à droite -->
+    <div class="contact-image">
+      <img src="images/contact-bois.jpg" alt="Contact GAB Construction Bois">
+      <!-- Infos pratiques sous le formulaire sur mobile -->
       <aside class="card contact-info">
         <h3>Infos pratiques</h3>
-        <p class="muted">Zone d'intervention : Provence-Alpes-Côte d'Azur. Déplacements étudiés selon chantier.</p>
+        <p class="muted">Zone d'intervention : Provence-Alpes-Côte d'Azur. Déplacements selon chantier.</p>
         <p class="muted">Assurance décennale, matériaux locaux, solutions écologiques.</p>
       </aside>
     </div>
-
-    <!-- Photo à droite du formulaire -->
-    <div class="contact-photo">
-      <img src="images/atelier.jpg" alt="Atelier GAB Construction Bois">
-    </div>
-
   </div>
 </section>
 
