@@ -246,6 +246,23 @@ aside.card:hover {
 .contact-list a:hover {
   color: var(--green);
 }
+/* Carte contact responsive pour mobile */
+@media (max-width: 700px) {
+  aside.card {
+    max-width: 100%;       /* occupe toute la largeur disponible */
+    margin-right: 0;       /* supprime l’espace à droite */
+    padding: 20px;         /* réduit un peu le padding pour mobile */
+  }
+
+  .contact-list {
+    gap: 8px;              /* réduit l’espacement entre les éléments */
+  }
+
+  .card-header {
+    font-size: 1.1rem;     /* ajuste légèrement le texte */
+    line-height: 1.3;
+  }
+}
 
 
 
