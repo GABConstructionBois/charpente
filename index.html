@@ -332,62 +332,90 @@ aside.card:hover {
     .realisations-bloc{ margin-bottom:40px; }
     .realisations-bloc h3{ margin:12px 0; }
 
-    .coverflow-container {
-      position: relative;
-      perspective: 1200px;
-      width: 100%;
-      max-width: 1000px;
-      height: 320px;
-      margin: 16px auto 36px;
-      overflow: visible;
-      background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent);
-      border-radius: 8px;
-      padding: 8px;
-    }
+ /* --- COVERFLOW DESKTOP --- */
+.coverflow-container {
+  position: relative;
+  perspective: 1200px;
+  width: 100%;
+  max-width: 1000px;
+  height: 320px;
+  margin: 16px auto 36px;
+  overflow: hidden; /* empêche le débordement sur mobile */
+  background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent);
+  border-radius: 8px;
+  padding: 8px;
+}
 
-    .coverflow {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
+.coverflow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
-    .coverflow img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 240px;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 12px;
-      transform: translate(-50%,-50%);
-      transition: transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.35s;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      cursor: pointer;
-      will-change: transform, opacity;
-    }
+.coverflow img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.35s;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  cursor: pointer;
+  will-change: transform, opacity;
+}
 
-    .cf-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 48px;
-      height: 48px;
-      border-radius: 999px;
-      border: 0;
-      background: rgba(0,0,0,0.45);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      cursor: pointer;
-      z-index: 1200;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-    }
-    .cf-prev { left: 12px; }
-    .cf-next { right: 12px; }
-    .cf-btn:hover{ background: rgba(0,0,0,0.6); }
+.cf-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  border: 0;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  cursor: pointer;
+  z-index: 1200;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+.cf-prev { left: 12px; }
+.cf-next { right: 12px; }
+.cf-btn:hover{ background: rgba(0,0,0,0.6); }
 
+/* --- VERSION MOBILE (optimisée) --- */
+@media (max-width: 600px) {
+
+  .coverflow-container {
+    height: 260px;
+    perspective: 800px; /* moins de profondeur = 3D plus propre */
+    padding: 4px;
+    overflow: hidden; /* évite les dépassements */
+  }
+
+  .coverflow img {
+    width: 170px;   /* réduit pour tenir dans l’écran */
+    height: 115px;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  }
+
+  .cf-btn {
+    width: 60px;   /* plus grands pour les doigts */
+    height: 60px;
+    font-size: 1.8rem;
+    background: rgba(0,0,0,0.5);
+  }
+
+  .cf-prev { left: 4px; }
+  .cf-next { right: 4px; }
+}
 
 
 
@@ -656,25 +684,38 @@ function handleSubmit(e){
   document.getElementById('formMsg').textContent = "Votre client mail devrait s'ouvrir. Si rien ne se passe, utilisez l'adresse indiquée.";
 }
 
+
+
+   
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll('.coverflow-container').forEach(container => {
     const coverflow = container.querySelector('.coverflow');
     const images = Array.from(coverflow.querySelectorAll('img'));
     if (!images.length) return;
 
- // configuration (ajuste si tu veux effet plus/moins prononcé)
-    const cfg = {
-      gap: 170,              // espace horizontal entre images
-      centerScale: 2.6,      // échelle image centrale
-      sideScaleStep: 0.6,    // réduction par pas depuis le centre
-      maxVisible: 4,         // nombre d'images visibles de chaque côté
-      zStep: 90,             // profondeur par pas
-      rotateStep: 16         // rotation Y par pas
-    };
+    // Fonction pour lire config responsive
+    function getCfg() {
+      const w = window.innerWidth;
+      if (w <= 420) {
+        return { gap: 110, centerScale: 1.9, sideScaleStep: 0.45, maxVisible: 3, zStep: 60, rotateStep: 10 };
+      } else if (w <= 700) {
+        return { gap: 130, centerScale: 2.1, sideScaleStep: 0.5, maxVisible: 3, zStep: 70, rotateStep: 12 };
+      } else {
+        return { gap: 170, centerScale: 2.6, sideScaleStep: 0.6, maxVisible: 4, zStep: 90, rotateStep: 16 };
+      }
+    }
 
+    let cfg = getCfg();
     let current = Math.floor(images.length / 2);
 
+    // apply initial CSS transitions (au cas où)
+    images.forEach(img => {
+      img.style.transition = 'transform 0.45s cubic-bezier(.2,.8,.2,1), opacity 0.35s';
+      img.style.willChange = 'transform, opacity';
+    });
+
     function render() {
+      cfg = getCfg(); // recalc si resize
       images.forEach((img, i) => {
         const offset = i - current;
         const abs = Math.abs(offset);
@@ -698,31 +739,51 @@ document.addEventListener("DOMContentLoaded", () => {
 
     render();
 
+    // boutons
     const prevBtn = container.querySelector('.cf-prev');
     const nextBtn = container.querySelector('.cf-next');
     if (prevBtn) prevBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.max(0, current - 1); render(); });
     if (nextBtn) nextBtn.addEventListener('click', e => { e.stopPropagation(); current = Math.min(images.length - 1, current + 1); render(); });
 
-    images.forEach((img, idx) => img.addEventListener('click', e => { e.stopPropagation(); current = idx; render(); }));
+    // Tactile : swipe simple + prevention de "click" lors d'un slide
+    let startX = 0, moved = false, lastX = 0;
+    container.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+      lastX = startX;
+      moved = false;
+    }, {passive:true});
 
-    let startX = null;
-    container.addEventListener('touchstart', e => { startX = e.touches[0].clientX; });
+    container.addEventListener('touchmove', e => {
+      const x = e.touches[0].clientX;
+      if (Math.abs(x - startX) > 6) moved = true; // petit seuil pour considérer comme mouvement
+      lastX = x;
+    }, {passive:true});
+
     container.addEventListener('touchend', e => {
-      if (startX === null) return;
-      const endX = e.changedTouches[0].clientX;
-      if (endX < startX - 30) current = Math.min(images.length - 1, current + 1);
-      if (endX > startX + 30) current = Math.max(0, current - 1);
-      startX = null;
+      const endX = lastX || (e.changedTouches && e.changedTouches[0].clientX) || 0;
+      const threshold = (window.innerWidth <= 700) ? 20 : 30;
+      if (!moved) return; // c'était un tap, pas un swipe
+      if (endX < startX - threshold) current = Math.min(images.length - 1, current + 1);
+      if (endX > startX + threshold) current = Math.max(0, current - 1);
+      startX = 0; lastX = 0; moved = false;
       render();
+    }, {passive:true});
+
+    // clic sur image : centre l'image sauf si on a glissé
+    images.forEach((img, idx) => {
+      img.addEventListener('click', e => {
+        if (moved) { e.preventDefault(); return; } // si glissé, ignore le click
+        current = idx; render();
+      });
     });
 
-    container.tabIndex = 0;
+    // Clavier + resize
     container.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft') { current = Math.max(0, current - 1); render(); }
       if (e.key === 'ArrowRight') { current = Math.min(images.length - 1, current + 1); render(); }
     });
+    window.addEventListener('resize', () => { render(); });
 
-    window.addEventListener('resize', render);
   });
 });
 </script>
