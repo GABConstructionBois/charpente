@@ -454,23 +454,41 @@ aside.card:hover {
 
     
 
-    /* CONTACT FORM */
-    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:20px}
-    form{display:flex;flex-direction:column;gap:10px}
-    input,textarea{padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08)}
-    textarea{min-height:120px}
+    /* Contact Grid personnalisé */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px; /* formulaire à gauche, photo à droite */
+  gap: 24px;
+  align-items: start;
+}
 
-    footer{background:#fafafa;border-top:1px solid rgba(0,0,0,0.04);padding:18px}
-    .footer-inner{max-width:var(--container);margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+/* Formulaire + infos pratiques */
+.form-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
-    /* responsive */
-    @media (max-width:900px){
-      .hero{grid-template-columns:1fr;padding:20px}
-      .gallery{grid-template-columns:repeat(2,1fr)}
-      .grid-3{grid-template-columns:1fr}
-      .contact-grid{grid-template-columns:1fr}
-      nav ul{display:none}
-    }
+/* Photo à droite */
+.contact-photo img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .contact-grid {
+    grid-template-columns: 1fr; /* tout en colonne */
+  }
+
+  .contact-photo {
+    order: -1; /* photo au-dessus du formulaire si tu veux, sinon supprime cette ligne */
+    margin-bottom: 16px;
+  }
+}
+
 
     /* small helpers */
     .small{font-size:0.9rem}
@@ -661,38 +679,55 @@ aside.card:hover {
 
 </section>
 
+   
+  <section id="contact">
+  <h2>Contact & Devis</h2>
+  <p class="muted">Remplissez le formulaire ci‑dessous ou contactez moi directement.</p>
+  
+  <div class="contact-grid" style="margin-top:12px">
 
-    <section id="contact">
-      <h2>Contact & Devis</h2>
-      <p class="muted">Remplis le formulaire ci‑dessous ou contacte‑nous directement.</p>
-      <div class="contact-grid" style="margin-top:12px">
-        <form id="contactForm" onsubmit="handleSubmit(event)">
-          <input type="text" id="name" placeholder="Nom et prénom" required>
-          <input type="tel" id="phone" placeholder="Téléphone" required>
-          <input type="email" id="email" placeholder="Email" required>
-          <input type="text" id="subject" placeholder="Objet (ex: Devis charpente)" required>
-          <textarea id="message" placeholder="Décris le projet (surface, localisation, contraintes...)" required></textarea>
-          <div style="display:flex;gap:10px;align-items:center">
-            <button class="btn btn-primary" type="submit">Envoyer la demande</button>
-            <div class="small muted">OU utilise : <a href="mailto:contact@charpente-bois-exemple.fr">contact@charpente-bois-exemple.fr</a></div>
-          </div>
-          <div id="formMsg" class="small muted" style="margin-top:8px"></div>
-        </form>
+    <!-- Formulaire -->
+    <div class="form-block">
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <input type="text" id="name" placeholder="Nom et prénom" required>
+        <input type="tel" id="phone" placeholder="Téléphone" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="subject" placeholder="Objet (ex: Devis charpente)" required>
+        <textarea id="message" placeholder="Décris le projet (surface, localisation, contraintes...)" required></textarea>
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="btn btn-primary" type="submit">Envoyer la demande</button>
+          <div class="small muted">OU utilisez : <a href="g.ferrandiz06@compagnons-du-devoir.fr">g.ferrandiz@compagnons-du-devoir.fr</a></div>
+        </div>
+        <div id="formMsg" class="small muted" style="margin-top:8px"></div>
+      </form>
 
-        <aside class="card">
-          <h3>Infos pratiques</h3>
-          <p class="muted">Zone d'intervention : Provences-Alpes-Côte d'éazur. Déplacements étudiés selon chantier.</p>
-          <p class="muted">Assurance décennale, matériaux locaux, solutions écologiques.</p>
-        </aside>
-      </div>
-    </section>
+      <!-- Infos pratiques sous le formulaire -->
+      <aside class="card contact-info">
+        <h3>Infos pratiques</h3>
+        <p class="muted">Zone d'intervention : Provence-Alpes-Côte d'Azur. Déplacements étudiés selon chantier.</p>
+        <p class="muted">Assurance décennale, matériaux locaux, solutions écologiques.</p>
+      </aside>
+    </div>
+
+    <!-- Photo à droite du formulaire -->
+    <div class="contact-photo">
+      <img src="images/atelier.jpg" alt="Atelier GAB Construction Bois">
+    </div>
+
+  </div>
+</section>
+
 
   </main>
 
   <footer>
     <div class="footer-inner">
-      <div class="small muted">© 2025 Charpente & Bois Éco — Tous droits réservés</div>
-      <div class="small">Conception : modèle rapide • <a href="#contact">Contact</a></div>
+      <div class="small muted">© 2025 GAB Construction Bois - Charpente & co — Tous droits réservés</div>
+      <div class="small">Conception : modèle rapide • Navigation : 
+      <a href="#accueil">Accueil</a> • 
+      <a href="#services">Services</a> • 
+      <a href="#realisations">Réalisations</a> • 
+      <a href="#contact">Contact</a>
     </div>
   </footer>
 
