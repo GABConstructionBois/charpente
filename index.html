@@ -246,24 +246,29 @@ aside.card:hover {
 .contact-list a:hover {
   color: var(--green);
 }
-/* Carte contact responsive pour mobile */
 @media (max-width: 700px) {
+  /* Grille hero responsive : une colonne */
+  .hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* espace entre texte et carte */
+  }
+
   aside.card {
-    max-width: 100%;       /* occupe toute la largeur disponible */
-    margin-right: 0;       /* supprime l’espace à droite */
-    padding: 20px;         /* réduit un peu le padding pour mobile */
+    max-width: 100%;   /* occupe toute la largeur disponible */
+    margin-right: 0;
+    padding: 20px;
   }
 
   .contact-list {
-    gap: 8px;              /* réduit l’espacement entre les éléments */
+    gap: 8px;
   }
 
   .card-header {
-    font-size: 1.1rem;     /* ajuste légèrement le texte */
+    font-size: 1.1rem;
     line-height: 1.3;
   }
 }
-
 
 
 
