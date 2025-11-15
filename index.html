@@ -106,18 +106,18 @@ nav a:hover {
 }
 
 /* Titre responsive sur une ligne */
-.hero-title {
-  font-size: clamp(36px, 5vw, 60px);
-  white-space: nowrap;          
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin: 0 0 30px;             /* espace sous le titre */
+..hero-title {
+  font-size: clamp(28px, 6vw, 60px); /* adapte la taille selon écran */
+  line-height: 1.2; /* un peu plus compact pour mobile */
+  white-space: normal; /* permet le retour à la ligne */
+  overflow: visible;
+  text-overflow: unset;
+  margin: 0 0 30px;
   background: linear-gradient(to right, #1b3931, #245046);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  /* Animation au chargement */
   opacity: 0;
   transform: translateX(100px);
   animation: slideIn 1s ease-out forwards;
