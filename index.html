@@ -64,8 +64,9 @@
     header{background: linear-gradient(to right,#1b3931,#245046); border-bottom:1px solid rgba(0,0,0,0.04)}
     .nav{max-width:var(--container);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
     .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:72px;height:72px;border-radius:10px;object-fit:cover;display:block;transition:transform .25s ease}
-    .logo:hover{transform:scale(1.08)}
+    /* Logo desktop large like original, responsive smaller on mobile */
+    .logo{width:225px;height:225px;border-radius:10px;object-fit:cover;display:block;transition:transform .25s ease}
+    .logo:hover{transform:scale(1.06)}
     .site-title{font-weight:700;color:var(--wood);font-size:1rem}
     .small.muted{font-size:.9rem;color:var(--wood)}
     nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
@@ -77,13 +78,36 @@
     /* HERO */
     .hero{display:flex;flex-direction:column;gap:18px;padding:18px}
     .hero-top{display:flex;gap:20px;align-items:center;justify-content:space-between}
+    /* Animated slogan: slide-in, fluid on desktop & mobile */
     .hero-title{
       font-size:clamp(28px,5vw,48px);
       margin:0;
       background: linear-gradient(to right,#1b3931,#245046);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
+      opacity: 0;
+      transform: translateX(80px);
+      animation: heroSlideIn .9s cubic-bezier(.2,.8,.2,1) forwards;
+      animation-delay: 0.45s;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
+    @keyframes heroSlideIn {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    /* On small screens allow wrapping but keep animation */
+    @media (max-width:720px) {
+      .hero-title{
+        white-space: normal;
+        transform: translateX(20px);
+        font-size: 5vw;
+      }
+    }
+
     .hero-grid{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
     .strap{color:var(--green);font-weight:700;margin-bottom:8px}
     .muted{color:#222;text-align:justify;line-height:1.6}
@@ -144,6 +168,7 @@
       .hero-grid{grid-template-columns:1fr}
       .grid-4{grid-template-columns:1fr}
       .carousel img{width:170px;height:110px}
+      /* reduce logo on small screens */
       .logo{width:60px;height:60px}
     }
   </style>
@@ -152,9 +177,9 @@
   <header>
     <div class="nav">
       <div class="brand">
-        <!-- logo left eager to avoid FOUC (above-the-fold) -->
+        <!-- logo large on desktop (225x225), reduced on mobile via CSS -->
         <a href="#contact">
-          <img src="images/LOGO GAB NEW.webp" alt="Logo GAB Construction Bois - symbole et nom" class="logo" width="72" height="72">
+          <img src="images/LOGO GAB NEW.webp" alt="Logo GAB Construction Bois - symbole et nom" class="logo" width="225" height="225" loading="eager">
         </a>
         <div>
           <div class="site-title">GAB Construction Bois - Charpente & Co.</div>
@@ -410,4 +435,3 @@
   </script>
 </body>
 </html>
-
