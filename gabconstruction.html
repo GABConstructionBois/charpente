@@ -6,14 +6,15 @@
 
 <title>GAB Construction Bois</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root{
-  --bg:#f8f8f6;
-  --text:#1a1a1a;
-  --muted:#777;
-  --accent:#8B5A2B;
+  --bg:#f6f6f2;
+  --text:#1f1f1f;
+  --wood:#9c6b3f;
+  --green:#3f6b5a;
+  --muted:#6f6f6f;
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
@@ -27,166 +28,142 @@ body{
 
 /* NAV */
 header{
-  position:fixed;
-  width:100%;
+  position:sticky;
   top:0;
-  z-index:100;
-  padding:20px 40px;
+  background:white;
+  border-bottom:1px solid rgba(0,0,0,0.05);
+}
+
+.nav{
+  max-width:1100px;
+  margin:auto;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  background:rgba(255,255,255,0.85);
-  backdrop-filter:blur(6px);
+  padding:18px;
 }
 
 .logo{
   font-weight:600;
-  letter-spacing:1px;
+  color:var(--green);
 }
 
 nav a{
-  margin-left:30px;
+  margin-left:20px;
   text-decoration:none;
   color:var(--text);
   font-size:0.9rem;
 }
 
+nav a:hover{
+  color:var(--wood);
+}
+
 /* HERO */
 .hero{
-  height:100vh;
-  background:url('images/hero.jpg') center/cover no-repeat;
-  display:flex;
-  align-items:center;
-  padding:0 60px;
-  position:relative;
-}
-
-.hero::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.35);
-}
-
-.hero-content{
-  position:relative;
-  color:white;
-  max-width:700px;
-}
-
-.hero h1{
-  font-family:'Playfair Display', serif;
-  font-size:clamp(40px,6vw,70px);
-  margin-bottom:20px;
-}
-
-.hero p{
-  font-size:1.1rem;
-  margin-bottom:30px;
-}
-
-.btn{
-  padding:12px 24px;
-  border:1px solid white;
-  color:white;
-  text-decoration:none;
-  transition:.3s;
-}
-
-.btn:hover{
-  background:white;
-  color:black;
-}
-
-/* SECTION */
-section{
-  padding:120px 60px;
-  max-width:1200px;
+  padding:80px 20px 60px;
+  max-width:1100px;
   margin:auto;
 }
 
-.section-title{
-  font-family:'Playfair Display', serif;
-  font-size:2.5rem;
-  margin-bottom:40px;
+.hero h1{
+  font-size:clamp(30px,5vw,48px);
+  margin-bottom:15px;
+  color:var(--green);
 }
 
-/* ABOUT */
-.about{
-  max-width:700px;
-  font-size:1.05rem;
+.hero p{
+  max-width:600px;
+  color:var(--muted);
+  margin-bottom:25px;
+}
+
+.btn{
+  display:inline-block;
+  padding:10px 18px;
+  background:var(--wood);
+  color:white;
+  text-decoration:none;
+  border-radius:6px;
+}
+
+.btn-outline{
+  border:1px solid var(--wood);
+  color:var(--wood);
+  background:transparent;
+}
+
+/* SECTIONS */
+section{
+  max-width:1100px;
+  margin:auto;
+  padding:60px 20px;
+}
+
+h2{
+  margin-bottom:20px;
+  color:var(--green);
 }
 
 /* SERVICES */
 .services{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:60px;
+  gap:20px;
+}
+
+.service{
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.05);
 }
 
 .service h3{
-  font-size:1.3rem;
-  margin-bottom:10px;
+  margin-bottom:8px;
 }
 
-/* PROJECTS */
+/* REALISATIONS */
 .projects{
-  display:flex;
-  flex-direction:column;
-  gap:80px;
-}
-
-.project{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:40px;
-  align-items:center;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
 }
 
-.project img{
+.projects img{
   width:100%;
-  height:400px;
+  height:220px;
   object-fit:cover;
-}
-
-.project:nth-child(even){
-  direction:rtl;
+  border-radius:10px;
 }
 
 /* CONTACT */
 .contact{
-  max-width:500px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
 }
 
-.contact p{
-  margin-bottom:20px;
+.card{
+  background:white;
+  padding:20px;
+  border-radius:10px;
 }
 
 /* FOOTER */
 footer{
-  padding:60px;
   text-align:center;
-  color:var(--muted);
+  padding:30px;
   font-size:0.9rem;
+  color:var(--muted);
 }
 
 /* RESPONSIVE */
-@media(max-width:900px){
-  .services{
+@media(max-width:800px){
+  .services,
+  .projects,
+  .contact{
     grid-template-columns:1fr;
-  }
-
-  .project{
-    grid-template-columns:1fr;
-    direction:ltr !important;
-  }
-
-  .hero{
-    padding:0 30px;
-  }
-
-  section{
-    padding:80px 30px;
   }
 }
 </style>
@@ -195,114 +172,88 @@ footer{
 <body>
 
 <header>
-  <div class="logo">GAB Construction Bois</div>
-  <nav>
-    <a href="#about">À propos</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Réalisations</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="nav">
+    <div class="logo">GAB Construction Bois</div>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#projects">Réalisations</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <h1>Charpente & construction bois d’exception</h1>
-    <p>Entre Monaco et la Ligurie — réalisations sur mesure</p>
-    <a href="#contact" class="btn">Demander une étude</a>
-  </div>
+  <h1>Bâtir durablement, avec exigence.</h1>
+  <p>
+    Artisan charpentier spécialisé en construction bois écologique.
+    Chaque projet est conçu pour s’intégrer naturellement à son environnement
+    et durer dans le temps.
+  </p>
+  <a href="#contact" class="btn">Demander un devis</a>
+  <a href="#projects" class="btn btn-outline">Voir les réalisations</a>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <h2 class="section-title">Approche</h2>
-  <div class="about">
-    <p>
-      Texte à remplir — vision, philosophie, positionnement haut de gamme,
-      approche architecturale, matériaux, exigence.
-    </p>
-  </div>
-</section>
-
-<!-- SERVICES -->
 <section id="services">
-  <h2 class="section-title">Services</h2>
-  <div class="services">
+  <h2>Services</h2>
 
+  <div class="services">
     <div class="service">
-      <h3>Charpente sur mesure</h3>
-      <p>Texte court</p>
+      <h3>Charpente traditionnelle</h3>
+      <p>Structures bois durables et assemblages traditionnels.</p>
     </div>
 
     <div class="service">
-      <h3>Extensions & ossature bois</h3>
-      <p>Texte court</p>
+      <h3>Ossature & extensions</h3>
+      <p>Extensions et constructions bois sur mesure.</p>
     </div>
 
     <div class="service">
       <h3>Aménagements extérieurs</h3>
-      <p>Texte court</p>
+      <p>Terrasses, pergolas, carports et structures bois.</p>
     </div>
 
     <div class="service">
-      <h3>Rénovation & isolation</h3>
-      <p>Texte court</p>
+      <h3>Isolation écologique</h3>
+      <p>Solutions naturelles pour un confort thermique durable.</p>
     </div>
-
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
-  <h2 class="section-title">Réalisations</h2>
+  <h2>Réalisations</h2>
 
   <div class="projects">
-
-    <div class="project">
-      <img src="images/projet1.jpg">
-      <div>
-        <h3>Projet 01</h3>
-        <p>Description courte</p>
-      </div>
-    </div>
-
-    <div class="project">
-      <img src="images/projet2.jpg">
-      <div>
-        <h3>Projet 02</h3>
-        <p>Description courte</p>
-      </div>
-    </div>
-
-    <div class="project">
-      <img src="images/projet3.jpg">
-      <div>
-        <h3>Projet 03</h3>
-        <p>Description courte</p>
-      </div>
-    </div>
-
+    <img src="images/projet1.jpg" alt="">
+    <img src="images/projet2.jpg" alt="">
+    <img src="images/projet3.jpg" alt="">
+    <img src="images/projet4.jpg" alt="">
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
-  <h2 class="section-title">Contact</h2>
+  <h2>Contact</h2>
 
   <div class="contact">
-    <p>Pour toute demande de projet, merci de me contacter directement.</p>
+    <div class="card">
+      <p><strong>Téléphone :</strong><br>06 64 75 53 73</p>
+      <p><strong>Email :</strong><br>g.ferrandiz06@compagnons-du-devoir.fr</p>
+      <p>Intervention : Alpes-Maritimes, Monaco, Ligurie</p>
+    </div>
 
-    <p><strong>Téléphone :</strong> 06 XX XX XX XX</p>
-    <p><strong>Email :</strong> contact@email.com</p>
-
-    <a href="mailto:contact@email.com" class="btn" style="color:black;border-color:black">
-      Envoyer un message
-    </a>
+    <div class="card">
+      <p>
+        Décrivez votre projet par email ou téléphone.
+        Une réponse rapide vous sera apportée.
+      </p>
+      <a href="mailto:g.ferrandiz06@compagnons-du-devoir.fr" class="btn">
+        Envoyer un message
+      </a>
+    </div>
   </div>
 </section>
 
 <footer>
-  © GAB Construction Bois — Tous droits réservés
+  © GAB Construction Bois — Artisan charpentier
 </footer>
 
 </body>
